@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Piyush P Kurur|Lambda calculus</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="keywords" content="Type theory" />
+    
+    
+    <meta name="generator" content="pandoc" />
+    <link href="../stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
+    <link href="../stylesheets/font-awesome/font-awesome.css" media="screen, projection" rel="stylesheet" type="text/css" />
+    <!--[if IE]>
+      <link href="/stylesheets/ie.css"
+            media="screen, projection"
+            rel="stylesheet"
+            type="text/css" />
+    <![endif]-->
+    <!--[if IE 7]>
+        <link href="/stylesheets/font-awesome/font-awesome-ie7.css"
+              rel="stylesheet"
+              type="text/css" />
+    <![endif]-->
+  </head>
+<body class="page">
+<div id="root">
+  <div class="header">
+    <div class="title">
+      Piyush P Kurur
+    </div>
+    <div class="navigation">
+      <p><!-- Add your navigation menu here !--></p>
+<div class="navigation-meta">
+
+<h3 id="meta">Meta</h3>
+<ul>
+<li><a href="../"><i class="icon-home"></i> Home</a></li>
+<li><a href="../contact/"><i class="icon-envelope"></i> Contact</a></li>
+<li><a href="../legal/"><i class="icon-legal"></i> Legalese</a></li>
+</ul>
+</div>
+
+<div class="navigation-work">
+<h3 id="work">Work</h3>
+<ul>
+<li><a href="../research/"><i class="icon-lightbulb"></i> Research</a></li>
+<li><a href="../teaching/"><i class="icon-book"></i> Teaching</a></li>
+<li><a href="../software/"><i class="icon-laptop"></i> Software</a></li>
+</ul>
+</div>
+
+<div class="navigation-blog">
+
+<h3 id="blog">Blog</h3>
+<ul>
+<li><a href="../posts/archive/"><i class="icon-archive"></i> Archive</a></li>
+<li><a href="../posts/feeds/atom.xml"><i class="icon-rss"></i> Atom</a>/<a href="../posts/feeds/rss.xml">Rss</a></li>
+</ul>
+</div>
+
+
+    </div>
+  </div>
+  <div class="content">
+    <div class="post-date">
+  <i>Posted on:  November  4, 2013 (Monday) </i>
+</div>
+
+<div class="post-tags">
+  <i>Tags:  <a href="../posts/tags/Type%20theory.html">Type theory</a> </i>
+</div>
+
+
+<div class="post">
+  <h1 id="post-title">Lambda calculus</h1>
+
+  <p>We begin the exploration of type theory by describing lambda calculus. This post is mostly to set up the notation and the standard reference for material here is the encyclopedic book <a href="http://mathgate.info/cebrown/notes/barendregt.php" title="The Lambda Calculus: Its syntax and semantics">The lambda calculus: Its syntax and semantics</a>. Also have a look on <a href="http://en.wikipedia.org/wiki/Lambda_calculus" title="Wikipedia: Lambda calculus">Wikipedia</a> for details and references.</p>
+<p>The core idea of lambda calculus is an elegant notation invented by <a href="http://en.wikipedia.org/wiki/Alonzo_Church" title="Wikipedia: Alonzo Church">Alonzo Church</a> to capture functions without naming them. Consider the function that increments its argument by 1. In notation of lambda calculus one can write such an increment function as <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>λ</mi><mi>x</mi><mo>.</mo><mi>x</mi><mo>+</mo><mn>1</mn></mrow></math> (assuming of course that <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo>+</mo></mrow></math> has already been defined). This notation has now found its way to many programming languages like Haskell (<code>\ x -&gt; x + 1</code> the backslash is an <a href="http://en.wikipedia.org/wiki/ASCII" title="Wikipedia: ASCII">ASCII</a> approximation of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>λ</mi></mrow></math>), python (<code>lambda x: x + 1</code>) etc. The lambda calculus we deal with here does not have the <em>built-in</em> function like <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo>+</mo></mrow></math>. All it has is a (countably infinite) supply of variables, which we will denote by small case letters <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi></mrow></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>y</mi></mrow></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>z</mi></mrow></math> etc and two fundamental operation namely application and abstraction. The lambda calculus expressions can be inductively defined as follows:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>e</mi><mo>=</mo><mi>x</mi><mo stretchy="false">∣</mo><msub><mi>e</mi><mn>1</mn></msub><msub><mi>e</mi><mn>2</mn></msub><mo stretchy="false">∣</mo><mi>λ</mi><mi>x</mi><mo>.</mo><mi>e</mi></mrow></math></p>
+<p>In the above inductive definition <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi></mrow></math> is any one of the countably infinite variables and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>e</mi><mn>1</mn></msub></mrow></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>e</mi><mn>2</mn></msub></mrow></math> are lambda calculus expressions defined recursively. We will follow that standard convention that all application associates to the left (i.e. <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>f</mi><mi>g</mi><mi>h</mi></mrow></math> means <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo stretchy="false">(</mo><mo stretchy="false">(</mo><mi>f</mi><mi>g</mi><mo stretchy="false">)</mo><mi>h</mi><mo stretchy="false">)</mo></mrow></math>) and that application binds tighter than <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>λ</mi></mrow></math>-abstraction. Further, the the expression <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>λ</mi><mi>x</mi><mi>y</mi><mo>.</mo><mi>x</mi><mi>y</mi></mrow></math> means <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>λ</mi><mi>x</mi><mo>.</mo><mi>λ</mi><mi>y</mi><mo>.</mo><mi>x</mi><mi>y</mi></mrow></math>.</p>
+<h1 id="free-and-bound-variables.">Free and bound variables.</h1>
+<p>The lambda abstraction acts like any other mathematical quantifier when it comes to determining the free and bound variables. An occurrence of a variable in a expression is either free (i.e. is not in the scope of any <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>λ</mi></mrow></math>-abstraction) or is bound to a lambda abstraction. If an occurrence of a variable <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi></mrow></math> is in the scope of more than one <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>λ</mi></mrow></math>-abstraction then it is bound to the inner most one. For example in the expression <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>λ</mi><mi>x</mi><mo>.</mo><mi>x</mi><mi>y</mi></mrow></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi></mrow></math> is bound and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>y</mi></mrow></math> is free. One can define the notion of free variables inductively as follows.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>F</mi><mi>V</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">{</mo><mi>x</mi><mo stretchy="false">}</mo><mo>,</mo></mrow></math> <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>F</mi><mi>V</mi><mo stretchy="false">(</mo><msub><mi>e</mi><mn>1</mn></msub><msub><mi>e</mi><mn>2</mn></msub><mo stretchy="false">)</mo><mo>=</mo><mi>F</mi><mi>V</mi><mo stretchy="false">(</mo><msub><mi>e</mi><mn>1</mn></msub><mo stretchy="false">)</mo><mo>∪</mo><mi>F</mi><mi>V</mi><mo stretchy="false">(</mo><msub><mi>e</mi><mn>2</mn></msub><mo stretchy="false">)</mo><mo>,</mo></mrow></math> <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>F</mi><mi>V</mi><mo stretchy="false">(</mo><mi>λ</mi><mi>x</mi><mo>.</mo><mi>e</mi><mo stretchy="false">)</mo><mo>=</mo><mi>F</mi><mi>V</mi><mo stretchy="false">(</mo><mi>e</mi><mo stretchy="false">)</mo><mo>∖</mo><mo stretchy="false">{</mo><mi>x</mi><mo stretchy="false">}</mo><mo>.</mo></mrow></math></p>
+<p>As in other mathematical notations, the meaning of a lambda calculus expression depends only on the free variables, which means one can change the bound variables of an expression. For example the expression <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>λ</mi><mi>x</mi><mo>.</mo><mi>x</mi><mi>y</mi></mrow></math> is the same as <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>λ</mi><mi>t</mi><mo>.</mo><mi>t</mi><mi>y</mi></mrow></math>. This change of bound variables is called <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>α</mi></mrow></math>-conversion. When doing an <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>α</mi></mrow></math>-conversion however, care must be taken to avoid variable bindings to be inadvertently changed. For example in the expression <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>λ</mi><mi>x</mi><mo>.</mo><mi>x</mi><mi>y</mi></mrow></math>, the variable x cannot be changed to <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>y</mi></mrow></math> as it is occurs free and changing <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi></mrow></math> to <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>y</mi></mrow></math> will make it bound. One can avoid such a situation if we always use fresh variables. We will assume from now on that all <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>α</mi></mrow></math>-conversion takes care of this problem.</p>
+<h1 id="β-reductions"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>β</mi></mrow></math>-reductions</h1>
+<p>The computational power of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>λ</mi></mrow></math>-calculus comes from what is known as <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>β</mi></mrow></math>-reductions which formalises the notion of the <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>λ</mi></mrow></math>-abstraction. The essence of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>β</mi></mrow></math>-reduction is that the expression <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo stretchy="false">(</mo><mi>λ</mi><mi>x</mi><mo>.</mo><mi>M</mi><mo stretchy="false">)</mo><mi>N</mi></mrow></math>, under <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>β</mi></mrow></math>-reduction, reduces to <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>M</mi><mo>ʹ</mo></mrow></math> where <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>M</mi><mo>ʹ</mo></mrow></math> is the expression <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>M</mi></mrow></math> with all <em>free</em> occurrences of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi></mrow></math> replaced by <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>N</mi></mrow></math>. However, we have to be careful to take care that no free variable in <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>N</mi></mrow></math> gets inadvertently bound as a result. For example consider the expression <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>M</mi><mo>=</mo><mi>λ</mi><mi>y</mi><mo>.</mo><mi>x</mi><mi>y</mi></mrow></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>N</mi><mo>=</mo><mi>y</mi></mrow></math>. If we blindly reduce <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo stretchy="false">(</mo><mi>λ</mi><mi>x</mi><mo>.</mo><mi>M</mi><mo stretchy="false">)</mo><mi>N</mi></mrow></math> then the free variable <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>y</mi></mrow></math> of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>N</mi></mrow></math> gets bound. This is because a free occurrence of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi></mrow></math> in <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>M</mi></mrow></math> comes in the scope of a <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>λ</mi><mi>y</mi></mrow></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>y</mi></mrow></math> happens to be free in <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>N</mi></mrow></math>. To avoid this problem one can <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>α</mi></mrow></math>-convert the <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>M</mi></mrow></math> to use a new bound variable instead of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>y</mi></mrow></math>. We assume from now on that each such <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>β</mi></mrow></math>-reduction carefully avoids the free variable capture.</p>
+<p>A <em><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>β</mi></mrow></math>-normal form</em> is an expression for which there are no more <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>β</mi></mrow></math>-reductions possible. For example a variable is a normal form so is expressions of the kind <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>λ</mi><mi>x</mi><mo>.</mo><mi>x</mi></mrow></math>. One can think of this as a program that has terminated. We say that an expression <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>M</mi></mrow></math> <em>has</em> a normal form if there is normal form <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>N</mi></mrow></math> to which it can be reduced after a series of finitely many <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>β</mi></mrow></math>-reductions. Expressions might have a normal form or can diverge and it is <em>undecidable</em> to check which is the case. However, a consequence of the <a href="http://en.wikipedia.org/wiki/Church-Rosser_theorem" title="Wikipedia: Church-Rosser theorem">Church-Rosser theorem</a> is that if an expression has a normal form then it should be unique.</p>
+<p>A <em>reduction strategy</em> is an algorithm to choose which sub-term of a lambda calculus expression should be <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>β</mi></mrow></math>-reduced next. Clearly there is no strategy that will terminate always as there are terms which do not have a normal form. Can we have a strategy which will guarantee termination if the expression has a normal form? Fortunately the <em>normal order</em> evaluation strategy is normalising, i.e. it finds a <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>β</mi></mrow></math>-normal form if it exists (See <a href="http://en.wikipedia.org/wiki/Lambda_Calculus" title="Wikipedia: Lambda Calculus">Lambda Calculus</a> for more details). Therefore, the problem of finding the normal form is <em>partially recursive</em> in the sense that one can write a program to compute the normal form of an expression if it has one.</p>
+<h1 id="fixed-points-and-recursion">Fixed points and recursion</h1>
+<p>It might not appear so but hidden inside the simplicity of lambda calculus is a full fledged programming language. With appropriate encoding of natural numbers (see for example <a href="http://en.wikipedia.org/wiki/Church_encoding" title="Wikipedia: Church encoding">Church encoding</a>) one can represent all computable functions. This is the Church-Turing hypothesis. While we do not want to go into the details of this, we will show how to implement one important feature namely recursive definition of functions.</p>
+<p>An important property of untyped lambda calculus is that every lambda calculus function <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>F</mi></mrow></math> has a <em>fixed point</em>: given <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>F</mi></mrow></math>, consider the expression <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>X</mi><mo>=</mo><mi>λ</mi><mi>x</mi><mo>.</mo><mi>F</mi><mo stretchy="false">(</mo><mi>x</mi><mi>x</mi><mo stretchy="false">)</mo></mrow></math>. One can easily show that the term <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>X</mi><mi>X</mi></mrow></math> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>β</mi></mrow></math>-reduces to <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>F</mi><mo stretchy="false">(</mo><mi>X</mi><mi>X</mi><mo stretchy="false">)</mo></mrow></math> and is therefore the fixed point of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>F</mi></mrow></math>. Furthermore, the computation of fixed point is effective as well, i.e. we have a lambda calculus combinator for computing it: Consider for example the combinator (i.e. lambda calculus term with no free variable) <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>Y</mi></mrow></math> defined as <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>Y</mi><mo>=</mo><mi>λ</mi><mi>f</mi><mo>.</mo><mo stretchy="false">(</mo><mi>λ</mi><mi>x</mi><mo>.</mo><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>λ</mi><mi>x</mi><mo>.</mo><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow></math> It is easy to verify that <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>Y</mi><mi>F</mi></mrow></math> is the fixed point for <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>F</mi></mrow></math>. Existence of fixed point combinator is important as that is what allows us to define functions recursively. A recursive definition <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>f</mi><mo>=</mo><mi>F</mi><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo></mrow></math> is nothing but the fixed point of the function <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>F</mi></mrow></math>. The fact that it is effective make it possible for the compiler to support recursive functions. Fixed point theorem also allows mutual recursion. For this one has to have a way of <em>pairing</em> values into tuples which can be done in lambda calculus by suitable encoding (see the <a href="http://en.wikipedia.org/wiki/Lambda_calculus#Pairs" title="Wikipedia: Lambda calculus#Pairs">Lambda calculus#Pairs</a>). The reset of the details I leave it as an exercise.</p>
+<!-- Global urls -->
+
+
+<!-- My coding stuff   -->
+
+<!-- Other languages  -->
+
+<!-- Haskell packages  -->
+
+<!-- Web stuff         -->
+
+<!-- Haskell links     -->
+
+<!-- Co-authors         -->
+
+<!-- Conference/Journal links -->
+
+
+</div>
+
+<div class="post-comments">
+    <div id="disqus_thread"></div>
+</div>
+
+<script type="text/javascript">
+  var disqus_shortname  = 'piyushkurur';  // required: Short name.
+  var disqus_url        = 'http://cse.iitk.ac.in/users/ppk/posts/2013-11-04-Lambda-calculus.html';
+                          // The url of this page
+  var disqus_title      = 'Lambda calculus';      // The title of this post
+  var disqus_identifier = '2013-11-04-Lambda-calculus';  // The id of this post
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+  </div>
+  <div id="powered-by-footer"></div>
+</div>
+<div id="powered-by">
+  Powered by: <a href="http://jaspervdj.be/hakyll">Hakyll</a>,
+  <a href="http://compass-style.org"> Compass</a> and
+  <a href="http://fontawesome.io"><i class="icon-flag"></i> Fontawesome</a>
+</div>
+
+</body>
+</html>

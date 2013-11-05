@@ -1,0 +1,489 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <title>Delusions of a chaotic mind</title>
+    <link href="http://cse.iitk.ac.in/users/ppk/posts/feeds/atom.xml" rel="self" />
+    <link href="http://cse.iitk.ac.in/users/ppk" />
+    <id>http://cse.iitk.ac.in/users/ppk/posts/feeds/atom.xml</id>
+    <author>
+        <name>Piyush P Kurur</name>
+        <email>ppk@cse.iitk.ac.in.REMOVETHISIFYOUAREAHUMAN</email>
+    </author>
+    <updated>2013-11-04T00:00:00Z</updated>
+    <entry>
+    <title>Lambda calculus</title>
+    <link href="http://cse.iitk.ac.in/users/ppk/posts/2013-11-04-Lambda-calculus.html" />
+    <id>http://cse.iitk.ac.in/users/ppk/posts/2013-11-04-Lambda-calculus.html</id>
+    <published>2013-11-04T00:00:00Z</published>
+    <updated>2013-11-04T00:00:00Z</updated>
+    <summary type="html"><![CDATA[<p>We begin the exploration of type theory by describing lambda calculus. This post is mostly to set up the notation and the standard reference for material here is the encyclopedic book <a href="http://mathgate.info/cebrown/notes/barendregt.php" title="The Lambda Calculus: Its syntax and semantics">The lambda calculus: Its syntax and semantics</a>. Also have a look on <a href="http://en.wikipedia.org/wiki/Lambda_calculus" title="Wikipedia: Lambda calculus">Wikipedia</a> for details and references.</p>
+<p>The core idea of lambda calculus is an elegant notation invented by <a href="http://en.wikipedia.org/wiki/Alonzo_Church" title="Wikipedia: Alonzo Church">Alonzo Church</a> to capture functions without naming them. Consider the function that increments its argument by 1. In notation of lambda calculus one can write such an increment function as <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>λ</mi><mi>x</mi><mo>.</mo><mi>x</mi><mo>+</mo><mn>1</mn></mrow></math> (assuming of course that <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo>+</mo></mrow></math> has already been defined). This notation has now found its way to many programming languages like Haskell (<code>\ x -&gt; x + 1</code> the backslash is an <a href="http://en.wikipedia.org/wiki/ASCII" title="Wikipedia: ASCII">ASCII</a> approximation of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>λ</mi></mrow></math>), python (<code>lambda x: x + 1</code>) etc. The lambda calculus we deal with here does not have the <em>built-in</em> function like <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo>+</mo></mrow></math>. All it has is a (countably infinite) supply of variables, which we will denote by small case letters <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi></mrow></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>y</mi></mrow></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>z</mi></mrow></math> etc and two fundamental operation namely application and abstraction. The lambda calculus expressions can be inductively defined as follows:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>e</mi><mo>=</mo><mi>x</mi><mo stretchy="false">∣</mo><msub><mi>e</mi><mn>1</mn></msub><msub><mi>e</mi><mn>2</mn></msub><mo stretchy="false">∣</mo><mi>λ</mi><mi>x</mi><mo>.</mo><mi>e</mi></mrow></math></p>
+<p>In the above inductive definition <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi></mrow></math> is any one of the countably infinite variables and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>e</mi><mn>1</mn></msub></mrow></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>e</mi><mn>2</mn></msub></mrow></math> are lambda calculus expressions defined recursively. We will follow that standard convention that all application associates to the left (i.e. <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>f</mi><mi>g</mi><mi>h</mi></mrow></math> means <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo stretchy="false">(</mo><mo stretchy="false">(</mo><mi>f</mi><mi>g</mi><mo stretchy="false">)</mo><mi>h</mi><mo stretchy="false">)</mo></mrow></math>) and that application binds tighter than <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>λ</mi></mrow></math>-abstraction. Further, the the expression <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>λ</mi><mi>x</mi><mi>y</mi><mo>.</mo><mi>x</mi><mi>y</mi></mrow></math> means <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>λ</mi><mi>x</mi><mo>.</mo><mi>λ</mi><mi>y</mi><mo>.</mo><mi>x</mi><mi>y</mi></mrow></math>.</p>
+<h1 id="free-and-bound-variables.">Free and bound variables.</h1>
+<p>The lambda abstraction acts like any other mathematical quantifier when it comes to determining the free and bound variables. An occurrence of a variable in a expression is either free (i.e. is not in the scope of any <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>λ</mi></mrow></math>-abstraction) or is bound to a lambda abstraction. If an occurrence of a variable <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi></mrow></math> is in the scope of more than one <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>λ</mi></mrow></math>-abstraction then it is bound to the inner most one. For example in the expression <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>λ</mi><mi>x</mi><mo>.</mo><mi>x</mi><mi>y</mi></mrow></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi></mrow></math> is bound and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>y</mi></mrow></math> is free. One can define the notion of free variables inductively as follows.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>F</mi><mi>V</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">{</mo><mi>x</mi><mo stretchy="false">}</mo><mo>,</mo></mrow></math> <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>F</mi><mi>V</mi><mo stretchy="false">(</mo><msub><mi>e</mi><mn>1</mn></msub><msub><mi>e</mi><mn>2</mn></msub><mo stretchy="false">)</mo><mo>=</mo><mi>F</mi><mi>V</mi><mo stretchy="false">(</mo><msub><mi>e</mi><mn>1</mn></msub><mo stretchy="false">)</mo><mo>∪</mo><mi>F</mi><mi>V</mi><mo stretchy="false">(</mo><msub><mi>e</mi><mn>2</mn></msub><mo stretchy="false">)</mo><mo>,</mo></mrow></math> <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>F</mi><mi>V</mi><mo stretchy="false">(</mo><mi>λ</mi><mi>x</mi><mo>.</mo><mi>e</mi><mo stretchy="false">)</mo><mo>=</mo><mi>F</mi><mi>V</mi><mo stretchy="false">(</mo><mi>e</mi><mo stretchy="false">)</mo><mo>∖</mo><mo stretchy="false">{</mo><mi>x</mi><mo stretchy="false">}</mo><mo>.</mo></mrow></math></p>
+<p>As in other mathematical notations, the meaning of a lambda calculus expression depends only on the free variables, which means one can change the bound variables of an expression. For example the expression <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>λ</mi><mi>x</mi><mo>.</mo><mi>x</mi><mi>y</mi></mrow></math> is the same as <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>λ</mi><mi>t</mi><mo>.</mo><mi>t</mi><mi>y</mi></mrow></math>. This change of bound variables is called <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>α</mi></mrow></math>-conversion. When doing an <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>α</mi></mrow></math>-conversion however, care must be taken to avoid variable bindings to be inadvertently changed. For example in the expression <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>λ</mi><mi>x</mi><mo>.</mo><mi>x</mi><mi>y</mi></mrow></math>, the variable x cannot be changed to <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>y</mi></mrow></math> as it is occurs free and changing <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi></mrow></math> to <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>y</mi></mrow></math> will make it bound. One can avoid such a situation if we always use fresh variables. We will assume from now on that all <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>α</mi></mrow></math>-conversion takes care of this problem.</p>
+<h1 id="β-reductions"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>β</mi></mrow></math>-reductions</h1>
+<p>The computational power of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>λ</mi></mrow></math>-calculus comes from what is known as <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>β</mi></mrow></math>-reductions which formalises the notion of the <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>λ</mi></mrow></math>-abstraction. The essence of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>β</mi></mrow></math>-reduction is that the expression <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo stretchy="false">(</mo><mi>λ</mi><mi>x</mi><mo>.</mo><mi>M</mi><mo stretchy="false">)</mo><mi>N</mi></mrow></math>, under <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>β</mi></mrow></math>-reduction, reduces to <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>M</mi><mo>ʹ</mo></mrow></math> where <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>M</mi><mo>ʹ</mo></mrow></math> is the expression <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>M</mi></mrow></math> with all <em>free</em> occurrences of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi></mrow></math> replaced by <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>N</mi></mrow></math>. However, we have to be careful to take care that no free variable in <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>N</mi></mrow></math> gets inadvertently bound as a result. For example consider the expression <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>M</mi><mo>=</mo><mi>λ</mi><mi>y</mi><mo>.</mo><mi>x</mi><mi>y</mi></mrow></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>N</mi><mo>=</mo><mi>y</mi></mrow></math>. If we blindly reduce <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo stretchy="false">(</mo><mi>λ</mi><mi>x</mi><mo>.</mo><mi>M</mi><mo stretchy="false">)</mo><mi>N</mi></mrow></math> then the free variable <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>y</mi></mrow></math> of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>N</mi></mrow></math> gets bound. This is because a free occurrence of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi></mrow></math> in <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>M</mi></mrow></math> comes in the scope of a <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>λ</mi><mi>y</mi></mrow></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>y</mi></mrow></math> happens to be free in <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>N</mi></mrow></math>. To avoid this problem one can <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>α</mi></mrow></math>-convert the <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>M</mi></mrow></math> to use a new bound variable instead of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>y</mi></mrow></math>. We assume from now on that each such <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>β</mi></mrow></math>-reduction carefully avoids the free variable capture.</p>
+<p>A <em><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>β</mi></mrow></math>-normal form</em> is an expression for which there are no more <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>β</mi></mrow></math>-reductions possible. For example a variable is a normal form so is expressions of the kind <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>λ</mi><mi>x</mi><mo>.</mo><mi>x</mi></mrow></math>. One can think of this as a program that has terminated. We say that an expression <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>M</mi></mrow></math> <em>has</em> a normal form if there is normal form <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>N</mi></mrow></math> to which it can be reduced after a series of finitely many <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>β</mi></mrow></math>-reductions. Expressions might have a normal form or can diverge and it is <em>undecidable</em> to check which is the case. However, a consequence of the <a href="http://en.wikipedia.org/wiki/Church-Rosser_theorem" title="Wikipedia: Church-Rosser theorem">Church-Rosser theorem</a> is that if an expression has a normal form then it should be unique.</p>
+<p>A <em>reduction strategy</em> is an algorithm to choose which sub-term of a lambda calculus expression should be <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>β</mi></mrow></math>-reduced next. Clearly there is no strategy that will terminate always as there are terms which do not have a normal form. Can we have a strategy which will guarantee termination if the expression has a normal form? Fortunately the <em>normal order</em> evaluation strategy is normalising, i.e. it finds a <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>β</mi></mrow></math>-normal form if it exists (See <a href="http://en.wikipedia.org/wiki/Lambda_Calculus" title="Wikipedia: Lambda Calculus">Lambda Calculus</a> for more details). Therefore, the problem of finding the normal form is <em>partially recursive</em> in the sense that one can write a program to compute the normal form of an expression if it has one.</p>
+<h1 id="fixed-points-and-recursion">Fixed points and recursion</h1>
+<p>It might not appear so but hidden inside the simplicity of lambda calculus is a full fledged programming language. With appropriate encoding of natural numbers (see for example <a href="http://en.wikipedia.org/wiki/Church_encoding" title="Wikipedia: Church encoding">Church encoding</a>) one can represent all computable functions. This is the Church-Turing hypothesis. While we do not want to go into the details of this, we will show how to implement one important feature namely recursive definition of functions.</p>
+<p>An important property of untyped lambda calculus is that every lambda calculus function <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>F</mi></mrow></math> has a <em>fixed point</em>: given <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>F</mi></mrow></math>, consider the expression <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>X</mi><mo>=</mo><mi>λ</mi><mi>x</mi><mo>.</mo><mi>F</mi><mo stretchy="false">(</mo><mi>x</mi><mi>x</mi><mo stretchy="false">)</mo></mrow></math>. One can easily show that the term <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>X</mi><mi>X</mi></mrow></math> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>β</mi></mrow></math>-reduces to <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>F</mi><mo stretchy="false">(</mo><mi>X</mi><mi>X</mi><mo stretchy="false">)</mo></mrow></math> and is therefore the fixed point of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>F</mi></mrow></math>. Furthermore, the computation of fixed point is effective as well, i.e. we have a lambda calculus combinator for computing it: Consider for example the combinator (i.e. lambda calculus term with no free variable) <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>Y</mi></mrow></math> defined as <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>Y</mi><mo>=</mo><mi>λ</mi><mi>f</mi><mo>.</mo><mo stretchy="false">(</mo><mi>λ</mi><mi>x</mi><mo>.</mo><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>λ</mi><mi>x</mi><mo>.</mo><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow></math> It is easy to verify that <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>Y</mi><mi>F</mi></mrow></math> is the fixed point for <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>F</mi></mrow></math>. Existence of fixed point combinator is important as that is what allows us to define functions recursively. A recursive definition <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>f</mi><mo>=</mo><mi>F</mi><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo></mrow></math> is nothing but the fixed point of the function <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>F</mi></mrow></math>. The fact that it is effective make it possible for the compiler to support recursive functions. Fixed point theorem also allows mutual recursion. For this one has to have a way of <em>pairing</em> values into tuples which can be done in lambda calculus by suitable encoding (see the <a href="http://en.wikipedia.org/wiki/Lambda_calculus#Pairs" title="Wikipedia: Lambda calculus#Pairs">Lambda calculus#Pairs</a>). The reset of the details I leave it as an exercise.</p>
+<!-- Global urls -->
+
+
+<!-- My coding stuff   -->
+
+<!-- Other languages  -->
+
+<!-- Haskell packages  -->
+
+<!-- Web stuff         -->
+
+<!-- Haskell links     -->
+
+<!-- Co-authors         -->
+
+<!-- Conference/Journal links -->
+]]></summary>
+</entry>
+<entry>
+    <title>Types, proofs and programming.</title>
+    <link href="http://cse.iitk.ac.in/users/ppk/posts/2013-10-18-Type-theory-series.html" />
+    <id>http://cse.iitk.ac.in/users/ppk/posts/2013-10-18-Type-theory-series.html</id>
+    <published>2013-10-18T00:00:00Z</published>
+    <updated>2013-10-18T00:00:00Z</updated>
+    <summary type="html"><![CDATA[<p>For quite some time, I have been toying with the idea of trying to get a grip on the various beautiful ideas that go under the name <em>type theory</em>. It looks to me that the time has come for a deep dive into the <a href="http://homotopytypetheory.org" title="Homotopic Type Theory">hott</a> (no this is definitely not a typo) waters. This is the first in a series of posts on type theory and its various ramifications to Functional programming and foundations of mathematics. I am not an expert in this area but by blogging I hope to gain the insights that has eluded me so far.</p>
+<p>This particular blog post also will serve as a “Table of Contents” for the series. While all the posts in this series will have the “<a href="../posts/tags/Type%20theory.html" title="Posts on Type theory">Type theory</a>” tag in it, the explicit listing of the contents serves as a suggested order in which to read the posts.</p>
+<h1 id="perspective.">Perspective.</h1>
+<p>In a sufficiently rich functional programming language (like for example Haskell), we have <em>expressions</em> each of which are associated with a <em>type</em>. The types can be seen as <em>invariants</em> that the expressions satisfy through out the program. For example, when you assert that the variable <code>x</code> has type <code>Int</code>, you are implicitly asking the compiler to make sure that <code>x</code> is used in ways that are consistent to the fact that it is an integer. Checking this invariant at compile time ensures that the programmer does not introduce silly bugs like trying to add <code>2</code> to <code>&quot;hello&quot;</code> etc. Thus there is some amount of <em>theorem proving</em>, rather trivial in the above case, already built into any strongly typed language. This informal connection can be formalised via what is know as the Curry-Howard Isomorphism which observes that the rules for assigning well defined types to expressions coincide remarkably with rules for proving statements in a suitable logic. For any type <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>τ</mi></mrow></math> one can associate a statement <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>A</mi><mi>τ</mi></msub></mrow></math> such that if <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>e</mi></mrow></math> is a well typed expression of type <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>τ</mi></mrow></math>, we can map <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>e</mi></mrow></math>, rather the derivation of the type of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>e</mi></mrow></math>, to a proof of the statement <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>A</mi><mi>τ</mi></msub></mrow></math>. The precise statement of this connection is left for later posts but the core idea here is that <em>type checking</em> is essentially <em>proof checking</em> (and vice-versa).</p>
+<p>Why is this connection interesting? In order to fully see the <a href="http://en.wikipedia.org/wiki/Blind_men_and_an_elephant" title="Wikipedia: Blind men and an elephant">type theory elephant</a>, we often need to acquire the split personalities of a programmer (functional programmer) and a mathematician.</p>
+<p>The programmer is actually interested in the expressions, as they are the programs. Types are a way of ensuring that the programs satisfy certain invariants. The stronger the type system, the larger is the class of invariants that can be expressed. Thus for her the types are a means to achieve correct programs. The holy grail in this line of thought is to have completely machine certified programs. A full fledged programming language which implements such types can thus be its own specification language.</p>
+<p>The mathematician is more interested in the types as they correspond to mathematical truths. Expressions are just proofs of these statements. The functional programming language with sufficiently powerful types can thus be used as a proof assistant to achieve completely automated mathematical proof checking. However, proofs being values are now first class values. Much like in a functional programming language, where making functions first class values helped in a lot of simplification and abstraction, it is hoped that making proofs first class can give ways to manipulate and think about them which traditional mathematics could not.</p>
+<p>The above two viewpoint have sometimes slightly conflicting goals. A programmer is concerned in the performance of these languages. There are certain technical issues like the fact that all function should terminate if one wants to avoid inconsistency that can be a show stopper in writing non-terminating programs like servers etc. The mathematician however is not much bothered about the actual efficiency of the running code. However, issues like consistency and termination is important. After all who wants a proof assistant that will accept all proofs.</p>
+<h1 id="contents">Contents</h1>
+<ol style="list-style-type: decimal">
+<li><a href="../posts/2013-11-04-Lambda-calculus.html">Lambda Calculus</a></li>
+</ol>
+<!-- Global urls -->
+
+
+<!-- My coding stuff   -->
+
+<!-- Other languages  -->
+
+<!-- Haskell packages  -->
+
+<!-- Web stuff         -->
+
+<!-- Haskell links     -->
+
+<!-- Co-authors         -->
+
+<!-- Conference/Journal links -->
+]]></summary>
+</entry>
+<entry>
+    <title>Raaz: A cryptographic network library for Haskell</title>
+    <link href="http://cse.iitk.ac.in/users/ppk/posts/2013-08-24-Raaz-A-cryptographic-network-library.html" />
+    <id>http://cse.iitk.ac.in/users/ppk/posts/2013-08-24-Raaz-A-cryptographic-network-library.html</id>
+    <published>2013-08-24T00:00:00Z</published>
+    <updated>2013-08-24T00:00:00Z</updated>
+    <summary type="html"><![CDATA[<p>This is my first post on <a href="http://github.com/piyush-kurur/raaz" title="Raaz: A Cryptographic Network library for Haskell">Raaz</a>, a cryptographic network library for <a href="http://www.haskell.org" title="Haskell homepage">Haskell</a>. <a href="http://github.com/piyush-kurur/raaz" title="Raaz: A Cryptographic Network library for Haskell">Raaz</a> broadly aims at developing into:</p>
+<ol style="list-style-type: decimal">
+<li><p>A platform to experiment with various cryptographic primitives.</p></li>
+<li><p>A library to write high performance servers and clients to some common cryptographic network protocols.</p></li>
+</ol>
+<p>I believe that <a href="http://www.haskell.org" title="Haskell homepage">Haskell</a> as a language has a lot of features that allow writing fast (as fast or better than any <a href="http://en.wikipedia.org/wiki/C_%28programming_language%29">C</a> library available) as well as secure cryptographic code. In this post, I attempt to explain some of the features of <a href="http://www.haskell.org" title="Haskell homepage">Haskell</a> that we make use of.</p>
+<h1 id="speed">Speed</h1>
+<p>Let me first dispose of the one myth that seems to persist in the mind of people who have never seen a modern functional language. No one wants their software to be slow. Cryptographic protocols should be especially well implemented otherwise folks would simply avoid using the secure options. Clearly when it comes to performance <a href="http://www.haskell.org" title="Haskell homepage">Haskell</a> can beat any of the interpreted languages <a href="http://www.python.org">Python</a>, <a href="http://www.ruby-lang.org">Ruby</a> or <a href="http://en.wikipedia.org/wiki/Java_%28programming_language%29">Java</a>. But what about <a href="http://en.wikipedia.org/wiki/C_%28programming_language%29">C</a>?</p>
+<p>The tight loops in the library which implements the primitives will anyway be written in <a href="http://en.wikipedia.org/wiki/C_%28programming_language%29">C</a>/Assembly. If one wants speed then one needs to do this whether one likes it or not. So for primitives it really does not matter which language one chooses. It then boils down to how easy it is to integrate <a href="http://en.wikipedia.org/wiki/C_%28programming_language%29">C</a>/Assembly code with <a href="http://www.haskell.org" title="Haskell homepage">Haskell</a>. Having a low overhead foreign function Interface (FFI) is really critical here and Haskell fortunately has it.</p>
+<p>Having fast primitives helps but a network library is not just a set of fast cryptographic primitives. Here are some of the features that one would.</p>
+<ol style="list-style-type: decimal">
+<li><p>High performance concurrency primitives for server applications. <a href="http://www.haskell.org" title="Haskell homepage">Haskell</a> really has no competition in this department. Here are some of the features that GHC (and libraries) supports: <a href="http://en.wikipedia.org/wiki/Green_threads" title="Wikipedia: Green threads">Green threads</a> <a href="http://www.haskell.org/haskellwiki/Software_transactional_memory">STM</a>s, <a href="http://www.haskell.org/ghc/docs/latest/html/libraries/base/Control-Concurrent-MVar.html">MVar</a>s etc. Using these features, servers written in <a href="http://www.haskell.org" title="Haskell homepage">Haskell</a> have been competitive (often outperforming) servers written is <a href="http://en.wikipedia.org/wiki/C_%28programming_language%29">C</a>. See for example <a href="http://mew.org/~kazu/proj/mighttpd/en/">mighttpd</a>.</p></li>
+<li><p>Efficient data serialisation and parsing libraries: Implementing the wire protocol efficiently is critical in improving the efficiency of the network application. <a href="http://www.haskell.org" title="Haskell homepage">Haskell</a> is especially rich in this department as well: <a href="http://hackage.haskell.org/package/attoparsec">attoparsec</a>, <a href="http://hackage.haskell.org/package/binary">binary</a>, <a href="http://hackage.haskell.org/package/blaze-builder">blaze-builder</a> etc. There are libraries that supports high performance (close to hand written <a href="http://en.wikipedia.org/wiki/C_%28programming_language%29">C</a> performance) at the same time achieving these feats at a much higher level of abstraction (which translates to less bugs and high maintainability).</p></li>
+</ol>
+<p>While having fast libraries is great, languages like <a href="http://en.wikipedia.org/wiki/C_%28programming_language%29">C</a> achieve this at the cost of abstraction. It often appears to the programmer that one needs to sacrifice elegance for speed. Not so with <a href="http://www.haskell.org" title="Haskell homepage">Haskell</a>. Many of the libraries I mentioned above achieve <a href="http://en.wikipedia.org/wiki/C_%28programming_language%29">C</a> speed with no compromise on the level of abstraction. This greatly enhances the maintainability and leads us to the next important feature that we want in our libraries, safety.</p>
+<h1 id="safety.">Safety.</h1>
+<p>Cryptographic implementations are full of corner cases and the bugs in them can be particularly lethal. A cryptographic library is usually broken, not by a direct attack on the underlying algorithm, RSA although quite dated is still secure, but through other means like buffer overflows, cache timing attacks and other <em>side channel</em> attacks. How can one minimise this? Let me give an example of a code which, while correct in normal circumstances, is bad in a crypto setting. Suppose you grant privileged access to a user by comparing a secret that you posses with the user supplied password. A naive string comparison will be prone to timing attacks: The time taken to reject a password is proportional to length of the longest common prefix of the secret and the password. The attacker then can guess the password one character at a time by looking at the time it takes for you to reject the password. One would usually not compare the secrets directly but hash them together with a salt and compare the hashes. However, any comparisons that take time <em>dependent</em> on the user input is prone to lead to future attacks when deployed without much thought.</p>
+<p>We could avoid this problem by asking users of our library to always use string comparisons that take constant time irrespective of the input. However, it is very likely that a user of our library, most of them will not be cryptographers, might miss this instruction. Won’t it be nice if such incidents are caught at compile time?</p>
+<p>We avoid this problem in <a href="http://www.haskell.org" title="Haskell homepage">Haskell</a> by leveraging its type safety. Instead of representing cryptographically significant data types like hashes, macs etc. as mere byte string, we define <a href="http://www.haskell.org" title="Haskell homepage">Haskell</a> data types for them. For example sha1 hashes are represented (in a simplified form) as follows:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">
+<span class="kw">module</span> <span class="dt">Raaz.Hash.Sha1</span> ( <span class="dt">Sha1</span> )
+
+<span class="kw">data</span> <span class="dt">Sha1</span> <span class="fu">=</span> <span class="dt">Sha1</span> <span class="dt">Word32</span> <span class="dt">Word32</span> <span class="dt">Word32</span> <span class="dt">Word32</span> <span class="dt">Word32</span>
+
+<span class="kw">instance</span> <span class="dt">Eq</span> <span class="dt">Sha1</span> <span class="kw">where</span>
+	(<span class="fu">==</span>) (<span class="dt">Sha1</span> h0 h1 h2 h3 h4) (<span class="dt">Sha1</span> g0 g1 g2 g3 g4)
+             <span class="fu">=</span>   xor h0 g0
+             <span class="fu">.|.</span> xor h1 g1
+             <span class="fu">.|.</span> xor h2 g2
+             <span class="fu">.|.</span> xor h3 g3
+             <span class="fu">.|.</span> xor h4 g4
+             <span class="fu">==</span> <span class="dv">0</span></code></pre>
+<p>The <code>Eq</code> instance for Sha1 has comparison operator defined in such a way that it will take time independent on the number of positions they match. A user is then forced by the compiler to use this equality as we will not be exposing the constructor to her.</p>
+<h1 id="status-of-the-project-and-how-to-contribute">Status of the project and how to contribute</h1>
+<p>Currently we have just began. We have made no releases yet and we are still experimenting with the API. All code is available under BSD3 license from <a href="http://github.com/piyush-kurur/raaz">http://github.com/piyush-kurur/raaz</a>).</p>
+<p>I look forward to your contributions. Even if you are not comfortable with haskell, you can contribute. For example, if computer architecture is your bread and butter and you are the <a href="http://en.wikipedia.org/wiki/Chuck_Norris" title="Wikipedia: Chuck Norris">Chuck Norris</a> of assembly language programming, do join us for some fun coding: A lot of primitives require fast implementation often exploiting the platform specific features like <a href="http://en.wikipedia.org/wiki/SIMD" title="Wikipedia: SIMD">SIMD</a> instruction set.</p>
+<!-- Global urls -->
+
+
+<!-- My coding stuff   -->
+
+<!-- Other languages  -->
+
+<!-- Haskell packages  -->
+
+<!-- Web stuff         -->
+
+<!-- Haskell links     -->
+
+<!-- Co-authors         -->
+
+<!-- Conference/Journal links -->
+]]></summary>
+</entry>
+<entry>
+    <title>Comments on this blog.</title>
+    <link href="http://cse.iitk.ac.in/users/ppk/posts/2013-05-22-Comments-on-this-blog.html" />
+    <id>http://cse.iitk.ac.in/users/ppk/posts/2013-05-22-Comments-on-this-blog.html</id>
+    <published>2013-05-22T00:00:00Z</published>
+    <updated>2013-05-22T00:00:00Z</updated>
+    <summary type="html"><![CDATA[<p>This blog does not support comments. The reasons are the following</p>
+<ol style="list-style-type: decimal">
+<li><p>This is a static using no dynamic PHP or any such monstrosities. I could have something like <a href="http://disqus.com">Disqus</a>.</p></li>
+<li><p>I am already full with spams in my inbox and do not have the motivation like others to weed out the spam.</p></li>
+</ol>
+<p>However if you are motivated, and feel that <a href="http://xkcd.com/386" title="Duty Calls">some one is wrong on the internet</a>, then you can send your comments to me via email. I hope to make the source code of this site open to all. Once that happens you can also send patches to me which will be incorporated.</p>
+<p><strong>Update 28 May 2013:</strong> The entire hakyll source is available at <sub><del><a href="http://hub.darcs.net/ppk/website">http://hub.darcs.net/ppk/website</a></del></sub> <a href="http://github.com/piyush-kurur-pages/website">http://github.com/piyush-kurur-pages/website</a></p>
+<p><strong>Update 03 Oct 2013:</strong> Now uses disqus for commenting.</p>
+<!-- Global urls -->
+
+
+<!-- My coding stuff   -->
+
+<!-- Other languages  -->
+
+<!-- Haskell packages  -->
+
+<!-- Web stuff         -->
+
+<!-- Haskell links     -->
+
+<!-- Co-authors         -->
+
+<!-- Conference/Journal links -->
+]]></summary>
+</entry>
+<entry>
+    <title>Webpage Reloaded</title>
+    <link href="http://cse.iitk.ac.in/users/ppk/posts/2013-05-15-Webpage-Reloaded.html" />
+    <id>http://cse.iitk.ac.in/users/ppk/posts/2013-05-15-Webpage-Reloaded.html</id>
+    <published>2013-05-15T00:00:00Z</published>
+    <updated>2013-05-15T00:00:00Z</updated>
+    <summary type="html"><![CDATA[<p>This is my very first post. It also coincides with the entire rewriting of my homepage and these two events are not independent. I used to use a set of Makefiles for dependency checks, <a href="http://johnmacfarlane.net/pandoc" title="Pandoc">pandoc</a> for generating html, m4 for templating and no css. The stuff worked but it soon became difficult to maintain.</p>
+<p>It was more or less clear to me from the start that I wanted a static site managed via <a href="http://darcs.net" title="Darcs">darcs</a>, written in <a href="http://daringfireball.net/projects/markdown/" title="Markdown">markdown</a>. Of course there is <a href="http://jekyllrb.com" title="Jekyll">jekyll</a> but I always thought <a href="http://johnmacfarlane.net/pandoc" title="Pandoc">pandoc</a> was way more powerful than some of the other markdown processors that comes with <a href="http://jekyllrb.com" title="Jekyll">jekyll</a>. And then I heard of <a href="http://jaspervdj.be/hakyll/" title="Hakyll">hakyll</a>. It uses <a href="http://johnmacfarlane.net/pandoc" title="Pandoc">pandoc</a> as its markdown processor which means that I get all the <a href="http://johnmacfarlane.net/pandoc" title="Pandoc">pandoc</a> goodies: easy math integration, syntax highlighting, and possibility of using different input (say latex) and output (say pdf) formats. Besides, it is written in <a href="http://www.haskell.org" title="Haskell homepage">my favorite programming language</a>. No more excuses for a bad homepage.</p>
+<p>I <em>never</em> thought my page would ever be styled with css. As a language (if you can call it one) css is pretty lousy, maybe slightly better than html. Besides, no two browser seems to agree on the standard. Who, in their right senses would want to work with it ? <a href="http://compass-style.org" title="Compass">Compass</a> made me change my opinion. Firstly, you can use the <a href="http://sass-lang.com" title="Sass">sass</a> now instead of css, an advantage comparable to using <a href="http://daringfireball.net/projects/markdown/" title="Markdown">markdown</a> instead of html. Secondly, it has mixins that take care of all (most) of those browser incompatibilities. It might not go well with IE users: I don’t know, neither do I care to know. But it should work mostly. The style for this page is entirely written in sass using the <a href="http://compass-style.org" title="Compass">compass</a> framework. I will publish the source code soon after some refactoring.</p>
+<p>Thanks to the great softwares mentioned above, I now have a clean homepage complete with a blog and atom/rss feeds. Some lecture notes that I had are not yet hakyllised. It will soon be.</p>
+<p>A big <em>thank you</em> to the folks behind <a href="http://jaspervdj.be/hakyll/" title="Hakyll">hakyll</a>, <a href="http://johnmacfarlane.net/pandoc" title="Pandoc">pandoc</a> and <a href="http://compass-style.org" title="Compass">compass</a>.</p>
+<p><strong>Update 18 May 2013</strong>: I have added my old wrtings as blog post. So it might appear as if this not my first post.</p>
+<!-- Global urls -->
+
+
+<!-- My coding stuff   -->
+
+<!-- Other languages  -->
+
+<!-- Haskell packages  -->
+
+<!-- Web stuff         -->
+
+<!-- Haskell links     -->
+
+<!-- Co-authors         -->
+
+<!-- Conference/Journal links -->
+]]></summary>
+</entry>
+<entry>
+    <title>Why kick Elsevier?</title>
+    <link href="http://cse.iitk.ac.in/users/ppk/posts/2012-02-20-Why-Kick-Elsevier.html" />
+    <id>http://cse.iitk.ac.in/users/ppk/posts/2012-02-20-Why-Kick-Elsevier.html</id>
+    <published>2012-02-20T00:00:00Z</published>
+    <updated>2012-02-20T00:00:00Z</updated>
+    <summary type="html"><![CDATA[<p>This is my understanding of the issue. You are free to send me any correction.</p>
+<h2 id="economic-damage">Economic damage</h2>
+<ol style="list-style-type: decimal">
+<li><p>High cost of journal subscription. Journals of Elsevier are too costly. What is worse is that they have taken over other journals and currently have a huge monopoly.</p></li>
+<li><p>Bundling journals. Libraries have to subscribe to a bundle to get a few journals of interest. Often bundles contain journals that are not of any interest to a particular institution. Worse, they include journals which themselves are questionable: e.g. journals like Chaos, Soliton and fractals.</p></li>
+</ol>
+<h2 id="unethical-publishing-practice">Unethical publishing practice</h2>
+<ol style="list-style-type: decimal">
+<li><p>Reviewing, which is important scientific responsibility of any journals, have been a sham in many cases. For example, Journals like Chaos, Soliton and fractals have published 302 papers from their Editor-in-chief El Naschie. (See <a href="http://rationalwiki.org/wiki/Mohamed_El_Naschie">http://rationalwiki.org/wiki/Mohamed_El_Naschie</a>)</p></li>
+<li><p>Setting up journals on pseudo-sciences like for e.g. The Homeopathy (No link given so that they don’t get the benefit of page ranking) which give them unnecessary scientific credibility. Astrologers, What are you waiting for? Call Elsevier right now.</p></li>
+<li><p>There has been cases of Elsevier publishing many fake papers written by ghost writers in return to getting paid by drug companies. See for example</p>
+<ul>
+<li><a href="http://classic.the-scientist.com/blog/display/55671/">The Scientist article on Merck affair</a></li>
+<li><a href="http://www.cbsnews.com/8301-505123_162-42842372/elsevier-accused-again-in-ghostwriting-scandal---this-time-in-wyeth-prempropremarin-cases/">They do it again</a></li>
+</ul></li>
+<li><p>Reed Elsevier’s role in arms trade (See <a href="http://www.idiolect.org.uk/elsevier/">http://www.idiolect.org.uk/elsevier/</a>) While an action that is difficult to justify, I would not consider this hurting the scientific publishing directly (other than the <em>minor</em> danger of completely wiping out humanity and thus the scientific establishment, at least on earth). With pressure mounting, apparently they have given up on this illustrious business.</p></li>
+</ol>
+<p>Summarising, the business practice of Elsevier has hurt scientific foundation not only economically but also led to lose of scientific credibility due to the questionable publishing standards they have followed.</p>
+<h1 id="what-can-we-do">What can we do ?</h1>
+<ol style="list-style-type: decimal">
+<li><p>Boycott them. See <a href="http://thecostofknowledge.com">http://thecostofknowledge.com</a>.</p></li>
+<li><p>If you are an editor of an Elsevier journal, resign now and encourage your fellow editors to resign en masse. See</p>
+<ul>
+<li><a href="http://www.cs.colorado.edu/~hal/jalg.html"><em>Journal of Algorithms</em> editorial board resignation</a></li>
+<li><a href="http://math.ucr.edu/home/baez/topology-letter.pdf">Resignation of the editorial board of <em>Topology</em></a></li>
+</ul></li>
+<li><p>If you happen to be in the library committee of your institute try to get Elsevier out of the subscription list.</p></li>
+<li><p>Support and form journals like <a href="http://theoryofcomputing.org"><em>Theory of Computing</em></a></p></li>
+<li><p>Make all your work available on the net.</p></li>
+</ol>
+<p>Remember all of this is not without ``risks’’. So evaluate the best options for you and make up your mind.</p>
+<!-- Global urls -->
+
+
+<!-- My coding stuff   -->
+
+<!-- Other languages  -->
+
+<!-- Haskell packages  -->
+
+<!-- Web stuff         -->
+
+<!-- Haskell links     -->
+
+<!-- Co-authors         -->
+
+<!-- Conference/Journal links -->
+]]></summary>
+</entry>
+<entry>
+    <title>SSHFS: Remote directory over ssh</title>
+    <link href="http://cse.iitk.ac.in/users/ppk/posts/2011-06-03-SSHFS-Remote-directory-over-ssh.html" />
+    <id>http://cse.iitk.ac.in/users/ppk/posts/2011-06-03-SSHFS-Remote-directory-over-ssh.html</id>
+    <published>2011-06-03T00:00:00Z</published>
+    <updated>2011-06-03T00:00:00Z</updated>
+    <summary type="html"><![CDATA[<p>Often one wants shared access to files across machines. Traditionally one uses the <a href="http://en.wikipedia.org/wiki/Network_File_System_(protocol)" title="NFS Wiki">network file system</a> (<a href="http://en.wikipedia.org/wiki/Network_File_System_(protocol)" title="NFS Wiki">nfs</a>). The network file server works as follows: There is an <em>nfs server</em> that <em>exports</em> some directories in its filesystem hiearchy to various <em>nfs clients</em> that <em>mount</em> these directory over the network into their file system hierarchy. As a result, each of the clients shares the directories exported by the nfs server. However <a href="http://en.wikipedia.org/wiki/Network_File_System_(protocol)" title="NFS Wiki">nfs</a> is probably the worst protocol when it comes to security and is rightly called network failure system.</p>
+<p>This is a tutorial on sshfs or ssh file system. The idea is to provide a <a href="http://en.wikipedia.org/wiki/Network_File_System_(protocol)" title="NFS Wiki">nfs</a> like mount which is secured by the very dependable ssh (the sftp subsystem of ssh).</p>
+<h1 id="using-sshfs.">Using sshfs.</h1>
+<ol style="list-style-type: decimal">
+<li>First mount the remote directory onto a local directory</li>
+</ol>
+<table class="sourceCode bash numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+</pre></td><td class="sourceCode"><pre><code class="sourceCode bash">
+$ <span class="kw">sshfs</span> ppk@remote: path/to/mount</code></pre></td></tr></table>
+<p>where <code>path/to/mount</code> is the point where you want the remote file system to be mounted.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>After step 1, <code>path/to/mount</code> on your local machine is actually the home directory of the remote machine. So you can use it just like a local machine. Expect slow response if your network connection to remote machine is slow though.</li>
+</ol>
+<table class="sourceCode bash numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+</pre></td><td class="sourceCode"><pre><code class="sourceCode bash">$ <span class="kw">cd</span> path/to/mount
+$ <span class="kw">emacs</span> myfavoritprogram.hs
+$ <span class="kw">ghc</span> myfavoritprogram.hs</code></pre></td></tr></table>
+<ol start="3" style="list-style-type: decimal">
+<li>After you are done with the work on the remote machine you may unmount the file system</li>
+</ol>
+<table class="sourceCode bash numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+</pre></td><td class="sourceCode"><pre><code class="sourceCode bash">
+$ <span class="kw">fusermount</span> -u path/to/mount</code></pre></td></tr></table>
+<h1 id="how-it-works.">How it works.</h1>
+<p>Sshfs is a userspace file system (fuse) that works over ssh, or rather sftp. Fuse is an implementation of filesystem primitives in userspace rather than in kernel space. This essentially means that users can mount and unmount file system without having to be root. Sshfs makes use of the sftp subsystem to do the remote file system operations. Thus all the great features of ssh holds true, i.e. key based authentication, use of ssh-agents. See my <a href="../posts/2011-06-02-SSH-A-quick-guide.html">tutorial blog on ssh</a> for more details on how to use ssh.</p>
+<h1 id="installing-sshfs.">Installing sshfs.</h1>
+<p>All linux distros have a prebuilt package for sshfs. On <a href="http://www.debian.org" title="The Debian homepage">Debian</a>/<a href="http://www.ubuntu.com" title="The Ubuntu homepage">Ubuntu</a> and <a href="http://www.archlinux.org" title="The Arch Linux homepage">Arch</a> the relevant package is <code>sshfs</code>. So all you need to do is to install it.</p>
+<table class="sourceCode bash numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+4
+</pre></td><td class="sourceCode"><pre><code class="sourceCode bash">
+$ <span class="kw">aptitude</span> install sshfs <span class="co"># as root.</span>
+$ <span class="kw">sudo</span> aptitude install sshfs <span class="co"># if you are on Unbutu</span>
+$ <span class="kw">pacman</span> -S sshfs <span class="co"># as root on an Arch machine</span></code></pre></td></tr></table>
+<p>On Fedora it looks like it is called <code>fuse-sshfs</code> so something like this should work.</p>
+<table class="sourceCode bash numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+</pre></td><td class="sourceCode"><pre><code class="sourceCode bash">$ <span class="kw">yum</span> install fuse-sshfs</code></pre></td></tr></table>
+<h1 id="ssh-is-working-but-not-sshfs.">Ssh is working but not sshfs.</h1>
+<p>A common error that people have reported is that ssh works but sshfs fails. If this happens, check whether your sftp subsystem is working. Most probably this too would fail or work incorrectly. One of the main reasons why sshfs/sftp does not work is because your startup scripts in the remote machine prints stuff on the screen. To check this out, try the following command.</p>
+<table class="sourceCode bash numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+</pre></td><td class="sourceCode"><pre><code class="sourceCode bash">$ <span class="kw">ssh</span> ppk@remote /bin/true</code></pre></td></tr></table>
+<p>If this command produces any output then you are in trouble. You have to fix your startup script in your remote machine — <code>.bash_profile</code> and <code>.bashrc</code>, if you are using bash as your default shell. The startup script should check whether the standard output is a terminal before it outputs something. For this protect your output generating commands inside a <code>test -t 1</code> block as follows</p>
+<table class="sourceCode bash numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+4
+5
+6
+</pre></td><td class="sourceCode"><pre><code class="sourceCode bash">$ <span class="kw">cat</span> .bash_profile
+
+<span class="kw">if [</span> <span class="ot">-t</span> 1<span class="kw"> ]</span> <span class="co"># Check if stdout is connected to a terminal</span>
+<span class="kw">then</span>
+    <span class="kw">echo</span> <span class="st">&quot;The answer is 42&quot;</span>
+<span class="kw">fi</span></code></pre></td></tr></table>
+<p>See the <a href="http://www.openssh.com/faq.html" title="ssh faq">openssh FAQ</a> for more details.</p>
+<!-- Global urls -->
+
+
+<!-- My coding stuff   -->
+
+<!-- Other languages  -->
+
+<!-- Haskell packages  -->
+
+<!-- Web stuff         -->
+
+<!-- Haskell links     -->
+
+<!-- Co-authors         -->
+
+<!-- Conference/Journal links -->
+]]></summary>
+</entry>
+<entry>
+    <title>SSH: A quick guide</title>
+    <link href="http://cse.iitk.ac.in/users/ppk/posts/2011-06-02-SSH-A-quick-guide.html" />
+    <id>http://cse.iitk.ac.in/users/ppk/posts/2011-06-02-SSH-A-quick-guide.html</id>
+    <published>2011-06-02T00:00:00Z</published>
+    <updated>2011-06-02T00:00:00Z</updated>
+    <summary type="html"><![CDATA[<p>The secure shell or <em>ssh</em> is much more than a secure replacement for telnet. Using ssh is not only secure but also convenient. We will have a look at ssh in this article. The objective is not to explain all the features of ssh, for that you can consult the man page, but to examine some of the key features and their use. All the code in this poset should work if you cut and paste (without the <code>$</code> prompt of course) it on to the terminal. Also by ssh I mean <a href="http://www.openssh.com" title="OpenSSH homepage">openssh</a> throughout.</p>
+<h2 id="your-.ssh-directory">Your .ssh directory</h2>
+<p>All the files used by ssh are inside the .ssh directory in your home area. Here is a list of them and their use.</p>
+<ul>
+<li>known_hosts: This file contains the public keys of some of the hosts that you have logged in to.</li>
+<li>id_rsa: <a href="http://en.wikipedia.org/wiki/RSA" title="RSA Wiki">RSA</a> private key.</li>
+<li>id_rsa.pub: <a href="http://en.wikipedia.org/wiki/RSA" title="RSA Wiki">RSA</a> public key.</li>
+<li>id_dsa: <a href="http://en.wikipedia.org/wiki/Digital_Signature_Algorithm" title="DSA Wiki">DSA</a> private key.</li>
+<li>id_dsa.pub: <a href="http://en.wikipedia.org/wiki/Digital_Signature_Algorithm" title="DSA Wiki">DSA</a> public keys.</li>
+<li>authorized_keys: List of public keys of users who are authorised to access this account.</li>
+</ul>
+<h2 id="managing-known_hosts">Managing known_hosts</h2>
+<p>The known_hosts file contains the public keys of all the hosts that you have logged in to. It is a good idea to get these known hosts from a trusted source. When your ssh client contacts a server, it receives public key of the server. If there is a mismatch, ssh warns you that the key has changed. This could be due to a man-in-the-middle attack or due to a system reinstallation. When you get such a message it is better to be sure that there is no tampering. Be especially careful if you in an unknown LAN or WiFi network like that of an airport or a hotel. Having a trusted known_hosts file is a very good security measure.</p>
+<h2 id="key-based-login.">Key based login.</h2>
+<p>Usually one uses ssh with passwords to login. Although this is secure in the sense that the passwords sent are encrypted, it has all the problems of password based authentication. An alternative is to use public key/private key based authentication. The public key access is more secure and in fact more convenient than the password based access. Here is the step by step procedure.</p>
+<table class="sourceCode bash numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+</pre></td><td class="sourceCode"><pre><code class="sourceCode bash">
+$ <span class="kw">ssh-keygen</span> <span class="co"># Generate the public key/private key pair.</span></code></pre></td></tr></table>
+<p>You will find the generated keys inside the .ssh directory. The files with extension .pub are the public keys. Copy them into the .ssh/authorized_keys file of the remote machine.</p>
+<table class="sourceCode bash numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="sourceCode"><pre><code class="sourceCode bash">$ <span class="kw">scp</span> .ssh/id_rsa.pub @remote:
+$ <span class="kw">ssh</span> remote
+<span class="kw">ppk@remote</span>: mkdir .ssh
+<span class="kw">ppk@remote</span>: cat id_rsa.pub <span class="kw">&gt;&gt;</span> .ssh/authorized_keys
+               <span class="co"># copy the key to the authorized_keys file.</span>
+<span class="kw">ppk@remote</span>: chmod 644 .ssh/authorized_keys
+               <span class="co"># Ensure that it is readable only to user.</span></code></pre></td></tr></table>
+<p>The last step is particularly important. Ssh will refuse to login if it finds that the .ssh/authorized_keys is writeable to someone other than the user. Otherwise an intruder could leave his public key and will have unrestricted access. So do not forget to change permissions. Many have been stumped by this and ssh does not give any indication on where the problem is.</p>
+<p>In case you connect to many hosts it is a good idea to install the same public key in all the different hosts you log into. Thus you need to remember only one passphrase for all these hosts.</p>
+<h2 id="generating-keys-from-a-windows-machine">Generating keys from a Windows machine</h2>
+<p>Of course the best option is to install yourself an operating system, one of the BSD’s or GNU/Linuxes for example. However if you don’t have that option, you will also be forced to use other ssh clients like putty. My experience with these clients are limited and that prevents me from giving a detailed procedure. Usually they have a click-click interface to generate keys. The keys generated are however not in the format expected by by openssh. Don’t you worry. The correct format is only a command line away.</p>
+<p>As before you have to copy the public key to the remote machine. The command</p>
+<table class="sourceCode bash numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+</pre></td><td class="sourceCode"><pre><code class="sourceCode bash">
+$ <span class="kw">ssh-keygen</span> -i -f pubkeyfile</code></pre></td></tr></table>
+<p>will convert an SSH2 compatible key format, which is what many of the commercial ssh-client uses, to openssh compatible key format and print it on the standard output. So after copying the public key to the remote machine, you can type</p>
+<table class="sourceCode bash numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+</pre></td><td class="sourceCode"><pre><code class="sourceCode bash">
+$ <span class="kw">ssh-keygen</span> -i -f pubkeyfile <span class="kw">&gt;&gt;</span> .ssh/authorized_keys</code></pre></td></tr></table>
+<p>on the remote machine.</p>
+<h2 id="passphrase-empty-passphrase-and-ssh-agents.">Passphrase, Empty Passphrase and SSH-agents.</h2>
+<p>While generating a public key/private key pair one is asked for a passphrase. The passphrase is used to keep you private key encrypted on the disk. It is never sent across the network or used in the protocol. Thus one can use an empty passphrase in which case the private key is kept unencrypted on the disk. In case your machine is a private laptop this is not such a bad idea. The advantage of an empty passphrase is that you will never have to type any passwords while ssh-ing or scp-ing. However there is always a risk of your private key getting compromised if the local machine from which you log on to the remote machine is a shared machine. You could, for example, forget to logout from the common terminal. So it is a good idea to have a passphrase.</p>
+<p>A better alternative to an empty passphrase is to use an ssh-agent. The ssh-agent keeps you private key with it and does all authentication on your behalf. Here is a quick example.</p>
+<table class="sourceCode bash numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+4
+5
+6
+</pre></td><td class="sourceCode"><pre><code class="sourceCode bash">
+$ <span class="kw">ssh-agent</span> bash  <span class="co"># start a new shell session with an ssh-agent running</span>
+$ <span class="kw">ssh-add</span>         <span class="co"># add your public keys to the agent.</span>
+$ <span class="kw">ssh</span> remote      <span class="co"># No passphrase will be asked</span>
+<span class="kw">ppk@remote</span>: exit
+$ <span class="kw">scp</span> foo ppk@remote:  <span class="co"># No passphrase will be asked.</span></code></pre></td></tr></table>
+<p>I like to use ssh-agent in conjunction with screen (another cute program). This is what I do.</p>
+<table class="sourceCode bash numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+</pre></td><td class="sourceCode"><pre><code class="sourceCode bash">
+$ <span class="kw">ssh-agent</span> screen <span class="co"># start a screen session with an ssh-agent</span>
+$ <span class="kw">ssh-add</span>          <span class="co"># in any of the windows of the screen.</span></code></pre></td></tr></table>
+<p>Now no passwords are asked in any of the windows of the screen session. Usually I leave my screen session running in the office machine (which is physically secure as only I have the key to my office) and when I connect from home, I attach my self to the already running screen in my office machine.</p>
+<table class="sourceCode bash numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+</pre></td><td class="sourceCode"><pre><code class="sourceCode bash">
+<span class="kw">ppk@home</span>: ssh office
+<span class="kw">ppk@office</span>: screen -x  <span class="co"># connect to the already running screen</span></code></pre></td></tr></table>
+<p>When I am done I detach the screen. Thus one can go on for months without typing any passphrase for any of the ssh/scp/sftp sessions.</p>
+<h2 id="ssh-tunneling-or-port-forwarding.">SSH-tunneling or port forwarding.</h2>
+<p>One of the most powerful uses of ssh is its ability to <em>port forward</em>. You can build an <em>ssh tunnel</em> and connect a local port to a remote port. For all purpose this local port is the remote port. For example suppose there is an smtp server (mail server) running on remote which relays mails only from remote. You can set up a tunnel that connects your local port with that of the remote smtp port provided you have shell access to the remote host. Here is how you do it.</p>
+<table class="sourceCode bash numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+</pre></td><td class="sourceCode"><pre><code class="sourceCode bash">
+$ <span class="kw">ssh</span> -N -L 2500:remote:25 ppk@remote <span class="kw">&amp;</span></code></pre></td></tr></table>
+<p>Now you have a smtp server “running” at port 2500 of your machine. All the traffic to port 2500 is redirected via the ssh tunnel to the port 25 of the remote machine. If you want to actually forward the port 25 of you local machine, you need to be root on your local machine as this is a privileged port. However you don’t need root access on remote.</p>
+<p>Using tunnel devices and ssh port forwarding one can also setup vpn like network. We wont go into the details in this article.</p>
+<!-- Global urls -->
+
+
+<!-- My coding stuff   -->
+
+<!-- Other languages  -->
+
+<!-- Haskell packages  -->
+
+<!-- Web stuff         -->
+
+<!-- Haskell links     -->
+
+<!-- Co-authors         -->
+
+<!-- Conference/Journal links -->
+]]></summary>
+</entry>
+<entry>
+    <title>Markdown: or how I stopped hating html and started liking homepage creation</title>
+    <link href="http://cse.iitk.ac.in/users/ppk/posts/2010-04-13-Markdown.html" />
+    <id>http://cse.iitk.ac.in/users/ppk/posts/2010-04-13-Markdown.html</id>
+    <published>2010-04-13T00:00:00Z</published>
+    <updated>2010-04-13T00:00:00Z</updated>
+    <summary type="html"><![CDATA[<p>It was hate at first sight. I remember quite well my first encounter with <a href="http://www.w3.org/TR/REC-html40/" title="HTML Reference">html</a>. It was way back in the previous century (somewhere around 1997-98) when I first saw an actual <a href="http://www.w3.org/TR/REC-html40/" title="HTML Reference">html</a> page. It looked uglier than the <em>DO 10 CONTINUE</em> lines of Fortran 77 that we were forced to use as part of our B.Tech “Learn how to use a computer” course. Many of my friends considered this Fortran course as part of the “Ragging” that one has to endure to become Engineers. But I am sure when they started their webpage creating phase of life they would have come for an even bigger shock. To put it politely: <a href="http://www.w3.org/TR/REC-html40/" title="HTML Reference">html</a> is an ugly format that has caused more miseries to humanity than all the world’s religions put together.</p>
+<p>The popularity of <a href="http://www.w3.org/TR/REC-html40/" title="HTML Reference">html</a> is baffling. It is not the most efficient of the formats from the rendering point of view and definitely not a format for mere mortals. The kludge called <a href="http://www.w3.org/TR/REC-html40/" title="HTML Reference">html</a> also brought about an industry of WYSIWYG <a href="http://www.w3.org/TR/REC-html40/" title="HTML Reference">html</a> editors which really spits venom when asked to render a Hello world page. This has lead to many “Best view by …. under 1024 x 798 resolution” pages; so much for the “portability” of <a href="http://www.w3.org/TR/REC-html40/" title="HTML Reference">html</a>. Despite all these shortcomings <a href="http://www.w3.org/TR/REC-html40/" title="HTML Reference">html</a> became popular. What more its “success” as a text format lead people to the creation of even uglier cousins like <a href="http://www.w3.org/XML/" title="XML Homepage">XML</a>.</p>
+<p>In this difficult world I had to make my homepage. Having a homepage is important in today’s world, they say. It is important to have your papers online, for example, in the unlikely event that some one is interested in your work. But the ugliness of <a href="http://www.w3.org/TR/REC-html40/" title="HTML Reference">html</a> was unbearable. I searched far and low for other ways to create <a href="http://www.w3.org/TR/REC-html40/" title="HTML Reference">html</a> including <a href="http://www.latex2html.org" title="LaTeX to HTML homepage">LaTeX2HTML</a>. All had their drawbacks.</p>
+<p>Enter <a href="http://daringfireball.net/projects/markdown/" title="Markdown">Markdown</a>. This really changed my life as far as webpage creation is concerned. Here is a format that one can easily convert to <a href="http://www.w3.org/TR/REC-html40/" title="HTML Reference">html</a> and is as pleasing to write as an anonymous hate mail to your boss (<a href="http://daringfireball.net/projects/markdown/" title="Markdown">markdown</a>’s format is based on email conventions). To convert markdown to html one just uses the <a href="http://daringfireball.net/projects/downloads/Markdown_1.0.1.zip" title="Markdown.pl">markdown.pl</a> script. However my favourite converter is the swiss army knife for format conversion <a href="http://johnmacfarlane.net/pandoc" title="Pandoc">pandoc</a>. <a href="http://johnmacfarlane.net/pandoc" title="Pandoc">Pandoc</a> is a program that can inter convert between various text formats much like the <a href="http://www.imagemagick.org/script/convert.php" title="ImageMagick convert">convert</a> for image formats. This means that if you already have an existing homepage you can use <a href="http://johnmacfarlane.net/pandoc" title="Pandoc">pandoc</a> to first convert it into <a href="http://daringfireball.net/projects/markdown/" title="Markdown">markdown</a>, edit it and then reconvert to <a href="http://www.w3.org/TR/REC-html40/" title="HTML Reference">html</a>. Pandoc also supports much needed extensions like the inline math a la LaTeX, a horror if one has to do it using <a href="http://www.w3.org/Math/" title="MathML">MathML</a>.</p>
+<p><a href="http://johnmacfarlane.net/pandoc" title="Pandoc">Pandoc</a> is not just a text format converter. It comes with a supporting <a href="http://www.haskell.org" title="Haskell homepage">Haskell</a> library which can be used to program specialised converters if needed.</p>
+<!-- Global urls -->
+
+
+<!-- My coding stuff   -->
+
+<!-- Other languages  -->
+
+<!-- Haskell packages  -->
+
+<!-- Web stuff         -->
+
+<!-- Haskell links     -->
+
+<!-- Co-authors         -->
+
+<!-- Conference/Journal links -->
+]]></summary>
+</entry>
+
+</feed>
