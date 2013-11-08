@@ -8,13 +8,13 @@
         <name>Piyush P Kurur</name>
         <email>ppk@cse.iitk.ac.in.REMOVETHISIFYOUAREAHUMAN</email>
     </author>
-    <updated>2013-11-10T00:00:00Z</updated>
+    <updated>2013-11-08T00:00:00Z</updated>
     <entry>
     <title>Travis builds for Raaz</title>
-    <link href="http://cse.iitk.ac.in/users/ppk/posts/2013-11-10-Travis-builds-for-raaz.html" />
-    <id>http://cse.iitk.ac.in/users/ppk/posts/2013-11-10-Travis-builds-for-raaz.html</id>
-    <published>2013-11-10T00:00:00Z</published>
-    <updated>2013-11-10T00:00:00Z</updated>
+    <link href="http://cse.iitk.ac.in/users/ppk/posts/2013-11-08-Travis-builds-for-raaz.html" />
+    <id>http://cse.iitk.ac.in/users/ppk/posts/2013-11-08-Travis-builds-for-raaz.html</id>
+    <published>2013-11-08T00:00:00Z</published>
+    <updated>2013-11-08T00:00:00Z</updated>
     <summary type="html"><![CDATA[<p>This post describes the structure of <a href="https://travis-ci.org" title="Travis CI">travis</a> CI system in place for <a href="http://github.com/piyush-kurur/raaz" title="Raaz: A Cryptographic Network library for Haskell">raaz</a>, the cryptographic network library for <a href="http://www.haskell.org" title="Haskell homepage">Haskell</a> that we are developing. This documents some of its tricky aspects and what more needs to be done.</p>
 <p>If you are not familiar with <a href="https://travis-ci.org" title="Travis CI">travis</a> CI please check it out. The tight integration of <a href="https://travis-ci.org" title="Travis CI">travis</a> with <a href="https://github.com" title="Github">github</a> means every push to the repository is built and checked. What more, the system also builds every pull requests, so before merging I can be sure that stuff works. Having said that there are certain limitation of <a href="https://travis-ci.org" title="Travis CI">travis</a> builds particularly in the context of <a href="http://github.com/piyush-kurur/raaz" title="Raaz: A Cryptographic Network library for Haskell">raaz</a> which I list below.</p>
 <ol style="list-style-type: decimal">

@@ -6,10 +6,10 @@
         <description><![CDATA[My views on how the Universe ought to be]]></description>
         <atom:link href="http://cse.iitk.ac.in/users/ppk/posts/feeds/rss.xml" rel="self"
                    type="application/rss+xml" />
-        <lastBuildDate>Sun, 10 Nov 2013 00:00:00 UT</lastBuildDate>
+        <lastBuildDate>Fri, 08 Nov 2013 00:00:00 UT</lastBuildDate>
         <item>
     <title>Travis builds for Raaz</title>
-    <link>http://cse.iitk.ac.in/users/ppk/posts/2013-11-10-Travis-builds-for-raaz.html</link>
+    <link>http://cse.iitk.ac.in/users/ppk/posts/2013-11-08-Travis-builds-for-raaz.html</link>
     <description><![CDATA[<p>This post describes the structure of <a href="https://travis-ci.org" title="Travis CI">travis</a> CI system in place for <a href="http://github.com/piyush-kurur/raaz" title="Raaz: A Cryptographic Network library for Haskell">raaz</a>, the cryptographic network library for <a href="http://www.haskell.org" title="Haskell homepage">Haskell</a> that we are developing. This documents some of its tricky aspects and what more needs to be done.</p>
 <p>If you are not familiar with <a href="https://travis-ci.org" title="Travis CI">travis</a> CI please check it out. The tight integration of <a href="https://travis-ci.org" title="Travis CI">travis</a> with <a href="https://github.com" title="Github">github</a> means every push to the repository is built and checked. What more, the system also builds every pull requests, so before merging I can be sure that stuff works. Having said that there are certain limitation of <a href="https://travis-ci.org" title="Travis CI">travis</a> builds particularly in the context of <a href="http://github.com/piyush-kurur/raaz" title="Raaz: A Cryptographic Network library for Haskell">raaz</a> which I list below.</p>
 <ol style="list-style-type: decimal">
@@ -48,8 +48,8 @@
 
 <!-- Conference/Journal links -->
 ]]></description>
-    <pubDate>Sun, 10 Nov 2013 00:00:00 UT</pubDate>
-    <guid>http://cse.iitk.ac.in/users/ppk/posts/2013-11-10-Travis-builds-for-raaz.html</guid>
+    <pubDate>Fri, 08 Nov 2013 00:00:00 UT</pubDate>
+    <guid>http://cse.iitk.ac.in/users/ppk/posts/2013-11-08-Travis-builds-for-raaz.html</guid>
 </item>
 <item>
     <title>Lambda calculus</title>
