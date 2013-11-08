@@ -6,8 +6,52 @@
         <description><![CDATA[My views on how the Universe ought to be]]></description>
         <atom:link href="http://cse.iitk.ac.in/users/ppk/posts/feeds/rss.xml" rel="self"
                    type="application/rss+xml" />
-        <lastBuildDate>Mon, 04 Nov 2013 00:00:00 UT</lastBuildDate>
+        <lastBuildDate>Sun, 10 Nov 2013 00:00:00 UT</lastBuildDate>
         <item>
+    <title>Travis builds for Raaz</title>
+    <link>http://cse.iitk.ac.in/users/ppk/posts/2013-11-10-Travis-builds-for-raaz.html</link>
+    <description><![CDATA[<p>This post describes the structure of <a href="https://travis-ci.org" title="Travis CI">travis</a> CI system in place for <a href="http://github.com/piyush-kurur/raaz" title="Raaz: A Cryptographic Network library for Haskell">raaz</a>, the cryptographic network library for <a href="http://www.haskell.org" title="Haskell homepage">Haskell</a> that we are developing. This documents some of its tricky aspects and what more needs to be done.</p>
+<p>If you are not familiar with <a href="https://travis-ci.org" title="Travis CI">travis</a> CI please check it out. The tight integration of <a href="https://travis-ci.org" title="Travis CI">travis</a> with <a href="https://github.com" title="Github">github</a> means every push to the repository is built and checked. What more, the system also builds every pull requests, so before merging I can be sure that stuff works. Having said that there are certain limitation of <a href="https://travis-ci.org" title="Travis CI">travis</a> builds particularly in the context of <a href="http://github.com/piyush-kurur/raaz" title="Raaz: A Cryptographic Network library for Haskell">raaz</a> which I list below.</p>
+<ol style="list-style-type: decimal">
+<li><p>The travis builds are done on an <a href="http://www.ubuntu.com" title="Ubuntu">Ubuntu</a> container. Therefore, the default builds are against whatever haskell platform comes with it. Thanks to <a href="https://github.com/hvr" title="Herbert Valerio Riedel">Herbert Valerio Riedel’s</a> for his <a href="https://github.com/hvr/multi-ghc-travis">write up</a> and his <a href="https://launchpad.net/~hvr/+archive/ghc" title="Herbert V Riedel's Ubuntu PPA">Ubuntu ppa</a>, we now build across multiple haskell platform. The instructions need to be tweaked though as they assume that repository is a single directory with the package in the root directory. I have described this in the next section. This therefore is mostly solved.</p></li>
+<li><p>Since I myself use <a href="http://www.debian.org" title="Debian">Debian</a> stable and <a href="https://travis-ci.org" title="Travis CI">travis</a> uses <a href="http://www.ubuntu.com" title="Ubuntu">Ubuntu</a>, there is not much cross OS builds. Ideally I would want it to be built on at least few of the BSD variants.</p></li>
+<li><p>The builds happen only on one architecture, the architecture that the <a href="https://travis-ci.org" title="Travis CI">travis</a> build runs on. While this is not a problem for most packages, <a href="http://github.com/piyush-kurur/raaz" title="Raaz: A Cryptographic Network library for Haskell">raaz</a> being a cryptographic library should be built across multiple architecture. Only then can we catch bugs due to endian mismatch, alignment problems (ARM in particular). This becomes all the more important when we start including architecture specific implementations of primitives.</p></li>
+</ol>
+<p>I think (2) should be easy to solve. Someone with more BSD experience can help out on this. I think (3) is particularly difficult because we need actual hardware to test it out. One option would be to build it and run on an emulator like <a href="http://www.qemu.org" title="QEMU processor emulator">qemu</a>. However, I do not know of any build system that makes this easy. On the other hand OS distributions like <a href="http://www.debian.org" title="Debian">Debian</a> should have solved this problem. I would like advice from some knowledgeable person here.</p>
+<h1 id="multi-platform-build-raazs-idiosyncracies.">Multi-platform build: Raaz’s idiosyncracies.</h1>
+<p>The <a href="http://github.com/piyush-kurur/raaz" title="Raaz: A Cryptographic Network library for Haskell">raaz</a> repository is a collection of haskell packages with dependencies between them. So <a href="https://github.com/hvr/multi-ghc-travis">Riedel’s instructions</a> do not work directly. We need to make sure that</p>
+<ol style="list-style-type: decimal">
+<li><p>To build a package we need to be in its root directory. This involves cd’ing into the directory and essentially following <a href="https://github.com/hvr/multi-ghc-travis">Riedel’s instructions</a></p></li>
+<li><p>Before installing a package like <a href="https://github.com/piyush-kurur/raaz/blob/master/raaz-hash-sha"><code>raaz-hash-sha</code></a>, we need to install all its dependencies within the raaz collection as those packages are not on cabal. We use <code>make</code> to ensure these.</p></li>
+</ol>
+<p>I have documented most of this in the <a href="https://github.com/piyush-kurur/raaz/blob/master/Makefile"><code>Makefile</code></a> which you might want to refer to. Let me know if the documentation needs improvements.</p>
+<h2 id="package-version-subtleties.">Package version subtleties.</h2>
+<p>There is a subtle problem with dependencies that makes multi-platform builds more or less meaningless. The way we ensure that the packages are built against a platform is by setting up an appropriate <code>cabal.config</code> file in the directory of the package. This config file puts constraints corresponding to the platform we want to test against. I noticed that the builds are actually not installing the platform packages because of the version dependency. For example, the dependency on Quickcheck that we had was <code>Quickcheck==2.4.*</code>. This means that even for builds for <a href="https://www.haskell.org/platform/changelog.html">platform 2013.2.0.0</a> the quick package used was <code>Quickcheck-2.4.something</code>. For this reason we had to go for a more liberal package version bounds (merge <a href="https://github.com/piyush-kurur/raaz/commit/ac0ad7afd711b656a77257ebc4ba923cb939b3f3">ac0ad7</a>). As long as we are not using the packages like <code>base</code> or <code>Quickcheck</code> in a non-standard way, I think we are fine.</p>
+<!-- Global urls -->
+
+
+<!-- My coding stuff   -->
+
+<!-- Some websites -->
+
+<!-- Some distros -->
+
+<!-- Other languages  -->
+
+<!-- Haskell packages  -->
+
+<!-- Web stuff         -->
+
+<!-- Haskell links     -->
+
+<!-- Co-authors         -->
+
+<!-- Conference/Journal links -->
+]]></description>
+    <pubDate>Sun, 10 Nov 2013 00:00:00 UT</pubDate>
+    <guid>http://cse.iitk.ac.in/users/ppk/posts/2013-11-10-Travis-builds-for-raaz.html</guid>
+</item>
+<item>
     <title>Lambda calculus</title>
     <link>http://cse.iitk.ac.in/users/ppk/posts/2013-11-04-Lambda-calculus.html</link>
     <description><![CDATA[<p>We begin the exploration of type theory by describing lambda calculus. This post is mostly to set up the notation and the standard reference for material here is the encyclopedic book <a href="http://mathgate.info/cebrown/notes/barendregt.php" title="The Lambda Calculus: Its syntax and semantics">The lambda calculus: Its syntax and semantics</a>. Also have a look on <a href="http://en.wikipedia.org/wiki/Lambda_calculus" title="Wikipedia: Lambda calculus">Wikipedia</a> for details and references.</p>
@@ -29,6 +73,10 @@
 
 
 <!-- My coding stuff   -->
+
+<!-- Some websites -->
+
+<!-- Some distros -->
 
 <!-- Other languages  -->
 
@@ -64,6 +112,10 @@
 
 
 <!-- My coding stuff   -->
+
+<!-- Some websites -->
+
+<!-- Some distros -->
 
 <!-- Other languages  -->
 
@@ -124,6 +176,10 @@
 
 <!-- My coding stuff   -->
 
+<!-- Some websites -->
+
+<!-- Some distros -->
+
 <!-- Other languages  -->
 
 <!-- Haskell packages  -->
@@ -155,6 +211,10 @@
 
 <!-- My coding stuff   -->
 
+<!-- Some websites -->
+
+<!-- Some distros -->
+
 <!-- Other languages  -->
 
 <!-- Haskell packages  -->
@@ -183,6 +243,10 @@
 
 
 <!-- My coding stuff   -->
+
+<!-- Some websites -->
+
+<!-- Some distros -->
 
 <!-- Other languages  -->
 
@@ -238,6 +302,10 @@
 
 <!-- My coding stuff   -->
 
+<!-- Some websites -->
+
+<!-- Some distros -->
+
 <!-- Other languages  -->
 
 <!-- Haskell packages  -->
@@ -286,7 +354,7 @@ $ <span class="kw">fusermount</span> -u path/to/mount</code></pre></td></tr></ta
 <h1 id="how-it-works.">How it works.</h1>
 <p>Sshfs is a userspace file system (fuse) that works over ssh, or rather sftp. Fuse is an implementation of filesystem primitives in userspace rather than in kernel space. This essentially means that users can mount and unmount file system without having to be root. Sshfs makes use of the sftp subsystem to do the remote file system operations. Thus all the great features of ssh holds true, i.e. key based authentication, use of ssh-agents. See my <a href="../posts/2011-06-02-SSH-A-quick-guide.html">tutorial blog on ssh</a> for more details on how to use ssh.</p>
 <h1 id="installing-sshfs.">Installing sshfs.</h1>
-<p>All linux distros have a prebuilt package for sshfs. On <a href="http://www.debian.org" title="The Debian homepage">Debian</a>/<a href="http://www.ubuntu.com" title="The Ubuntu homepage">Ubuntu</a> and <a href="http://www.archlinux.org" title="The Arch Linux homepage">Arch</a> the relevant package is <code>sshfs</code>. So all you need to do is to install it.</p>
+<p>All linux distros have a prebuilt package for sshfs. On <a href="http://www.debian.org" title="Debian">Debian</a>/<a href="http://www.ubuntu.com" title="Ubuntu">Ubuntu</a> and <a href="http://www.archlinux.org" title="The Arch Linux homepage">Arch</a> the relevant package is <code>sshfs</code>. So all you need to do is to install it.</p>
 <table class="sourceCode bash numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
 2
 3
@@ -320,6 +388,10 @@ $ <span class="kw">pacman</span> -S sshfs <span class="co"># as root on an Arch 
 
 
 <!-- My coding stuff   -->
+
+<!-- Some websites -->
+
+<!-- Some distros -->
 
 <!-- Other languages  -->
 
@@ -431,6 +503,10 @@ $ <span class="kw">ssh</span> -N -L 2500:remote:25 ppk@remote <span class="kw">&
 
 <!-- My coding stuff   -->
 
+<!-- Some websites -->
+
+<!-- Some distros -->
+
 <!-- Other languages  -->
 
 <!-- Haskell packages  -->
@@ -458,6 +534,10 @@ $ <span class="kw">ssh</span> -N -L 2500:remote:25 ppk@remote <span class="kw">&
 
 
 <!-- My coding stuff   -->
+
+<!-- Some websites -->
+
+<!-- Some distros -->
 
 <!-- Other languages  -->
 

@@ -104,7 +104,7 @@ $ <span class="kw">fusermount</span> -u path/to/mount</code></pre></td></tr></ta
 <h1 id="how-it-works.">How it works.</h1>
 <p>Sshfs is a userspace file system (fuse) that works over ssh, or rather sftp. Fuse is an implementation of filesystem primitives in userspace rather than in kernel space. This essentially means that users can mount and unmount file system without having to be root. Sshfs makes use of the sftp subsystem to do the remote file system operations. Thus all the great features of ssh holds true, i.e. key based authentication, use of ssh-agents. See my <a href="../posts/2011-06-02-SSH-A-quick-guide.html">tutorial blog on ssh</a> for more details on how to use ssh.</p>
 <h1 id="installing-sshfs.">Installing sshfs.</h1>
-<p>All linux distros have a prebuilt package for sshfs. On <a href="http://www.debian.org" title="The Debian homepage">Debian</a>/<a href="http://www.ubuntu.com" title="The Ubuntu homepage">Ubuntu</a> and <a href="http://www.archlinux.org" title="The Arch Linux homepage">Arch</a> the relevant package is <code>sshfs</code>. So all you need to do is to install it.</p>
+<p>All linux distros have a prebuilt package for sshfs. On <a href="http://www.debian.org" title="Debian">Debian</a>/<a href="http://www.ubuntu.com" title="Ubuntu">Ubuntu</a> and <a href="http://www.archlinux.org" title="The Arch Linux homepage">Arch</a> the relevant package is <code>sshfs</code>. So all you need to do is to install it.</p>
 <table class="sourceCode bash numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
 2
 3
@@ -138,6 +138,10 @@ $ <span class="kw">pacman</span> -S sshfs <span class="co"># as root on an Arch 
 
 
 <!-- My coding stuff   -->
+
+<!-- Some websites -->
+
+<!-- Some distros -->
 
 <!-- Other languages  -->
 
