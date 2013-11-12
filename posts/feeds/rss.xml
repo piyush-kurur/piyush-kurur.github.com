@@ -6,8 +6,36 @@
         <description><![CDATA[My views on how the Universe ought to be]]></description>
         <atom:link href="http://cse.iitk.ac.in/users/ppk/posts/feeds/rss.xml" rel="self"
                    type="application/rss+xml" />
-        <lastBuildDate>Fri, 08 Nov 2013 00:00:00 UT</lastBuildDate>
+        <lastBuildDate>Fri, 22 Nov 2013 00:00:00 UT</lastBuildDate>
         <item>
+    <title>Typed lambda calculus</title>
+    <link>http://cse.iitk.ac.in/users/ppk/posts/2013-11-22-Typed-lambda-calculus.html</link>
+    <description><![CDATA[<p>In this post, I briefly introduce typed lambda calculus in its simplest form and explain the type inference rules. The <a href="http://en.wikipedia.org/wiki/Curry_Howard_Isomorphism" title="Wikipedia: Curry Howard Isomorphism">Curry Howard Isomorphism</a> appears for the first time here although of a toy logical system, namely the propositional logic with implication (⇒) as the only boolean operation.</p>
+<!-- Global urls -->
+
+
+<!-- My coding stuff   -->
+
+<!-- Some websites -->
+
+<!-- Some distros -->
+
+<!-- Other languages  -->
+
+<!-- Haskell packages  -->
+
+<!-- Web stuff         -->
+
+<!-- Haskell links     -->
+
+<!-- Co-authors         -->
+
+<!-- Conference/Journal links -->
+]]></description>
+    <pubDate>Fri, 22 Nov 2013 00:00:00 UT</pubDate>
+    <guid>http://cse.iitk.ac.in/users/ppk/posts/2013-11-22-Typed-lambda-calculus.html</guid>
+</item>
+<item>
     <title>Travis builds for Raaz</title>
     <link>http://cse.iitk.ac.in/users/ppk/posts/2013-11-08-Travis-builds-for-raaz.html</link>
     <description><![CDATA[<p>This post describes the structure of <a href="https://travis-ci.org" title="Travis CI">travis</a> CI system in place for <a href="http://github.com/piyush-kurur/raaz" title="Raaz: A Cryptographic Network library for Haskell">raaz</a>, the cryptographic network library for <a href="http://www.haskell.org" title="Haskell homepage">Haskell</a> that we are developing. This documents some of its tricky aspects and what more needs to be done.</p>
