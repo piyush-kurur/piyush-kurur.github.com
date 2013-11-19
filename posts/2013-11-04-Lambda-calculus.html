@@ -63,18 +63,10 @@
     </div>
   </div>
   <div class="content">
-    <div class="post-date">
-  <i>Posted on:  November  4, 2013 (Monday) </i>
-</div>
-
-<div class="post-tags">
-  <i>Tags:  <a href="../posts/tags/Type%20theory.html">Type theory</a> </i>
-</div>
-
-
+    <span class="post-date">November  4, 2013 (Monday)</span>
+<span class="post-tags"><i class="icon-tags"></i><a href="../posts/tags/Type%20theory.html">Type theory</a></span>
 <div class="post">
   <h1 id="post-title">Lambda calculus</h1>
-
   <p>We begin the exploration of type theory by describing lambda calculus. This post is mostly to set up the notation and the standard reference for material here is the encyclopedic book <a href="http://mathgate.info/cebrown/notes/barendregt.php" title="The Lambda Calculus: Its syntax and semantics">The lambda calculus: Its syntax and semantics</a>. Also have a look on <a href="http://en.wikipedia.org/wiki/Lambda_calculus" title="Wikipedia: Lambda calculus">Wikipedia</a> for details and references.</p>
 <p>The core idea of lambda calculus is an elegant notation invented by <a href="http://en.wikipedia.org/wiki/Alonzo_Church" title="Wikipedia: Alonzo Church">Alonzo Church</a> to capture functions without naming them. Consider the function that increments its argument by 1. In notation of lambda calculus one can write such an increment function as <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>λ</mi><mi>x</mi><mo>.</mo><mi>x</mi><mo>+</mo><mn>1</mn></mrow></math> (assuming of course that <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo>+</mo></mrow></math> has already been defined). This notation has now found its way to many programming languages like Haskell (<code>\ x -&gt; x + 1</code> the backslash is an <a href="http://en.wikipedia.org/wiki/ASCII" title="Wikipedia: ASCII">ASCII</a> approximation of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>λ</mi></mrow></math>), python (<code>lambda x: x + 1</code>) etc. The lambda calculus we deal with here does not have the <em>built-in</em> function like <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo>+</mo></mrow></math>. All it has is a (countably infinite) supply of variables, which we will denote by small case letters <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi></mrow></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>y</mi></mrow></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>z</mi></mrow></math> etc and two fundamental operation namely application and abstraction. The lambda calculus expressions can be inductively defined as follows:</p>
 <p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>e</mi><mo>=</mo><mi>x</mi><mo stretchy="false">∣</mo><msub><mi>e</mi><mn>1</mn></msub><msub><mi>e</mi><mn>2</mn></msub><mo stretchy="false">∣</mo><mi>λ</mi><mi>x</mi><mo>.</mo><mi>e</mi></mrow></math></p>
@@ -110,7 +102,6 @@
 <!-- Co-authors         -->
 
 <!-- Conference/Journal links -->
-
 
 </div>
 

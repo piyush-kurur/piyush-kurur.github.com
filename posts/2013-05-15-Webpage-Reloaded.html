@@ -63,18 +63,10 @@
     </div>
   </div>
   <div class="content">
-    <div class="post-date">
-  <i>Posted on:  May 15, 2013 (Wednesday) </i>
-</div>
-
-<div class="post-tags">
-  <i>Tags:  <a href="../posts/tags/Web.html">Web</a> </i>
-</div>
-
-
+    <span class="post-date">May 15, 2013 (Wednesday)</span>
+<span class="post-tags"><i class="icon-tags"></i><a href="../posts/tags/Web.html">Web</a></span>
 <div class="post">
   <h1 id="post-title">Webpage Reloaded</h1>
-
   <p>This is my very first post. It also coincides with the entire rewriting of my homepage and these two events are not independent. I used to use a set of Makefiles for dependency checks, <a href="http://johnmacfarlane.net/pandoc" title="Pandoc">pandoc</a> for generating html, m4 for templating and no css. The stuff worked but it soon became difficult to maintain.</p>
 <p>It was more or less clear to me from the start that I wanted a static site managed via <a href="http://darcs.net" title="Darcs">darcs</a>, written in <a href="http://daringfireball.net/projects/markdown/" title="Markdown">markdown</a>. Of course there is <a href="http://jekyllrb.com" title="Jekyll">jekyll</a> but I always thought <a href="http://johnmacfarlane.net/pandoc" title="Pandoc">pandoc</a> was way more powerful than some of the other markdown processors that comes with <a href="http://jekyllrb.com" title="Jekyll">jekyll</a>. And then I heard of <a href="http://jaspervdj.be/hakyll/" title="Hakyll">hakyll</a>. It uses <a href="http://johnmacfarlane.net/pandoc" title="Pandoc">pandoc</a> as its markdown processor which means that I get all the <a href="http://johnmacfarlane.net/pandoc" title="Pandoc">pandoc</a> goodies: easy math integration, syntax highlighting, and possibility of using different input (say latex) and output (say pdf) formats. Besides, it is written in <a href="http://www.haskell.org" title="Haskell homepage">my favorite programming language</a>. No more excuses for a bad homepage.</p>
 <p>I <em>never</em> thought my page would ever be styled with css. As a language (if you can call it one) css is pretty lousy, maybe slightly better than html. Besides, no two browser seems to agree on the standard. Who, in their right senses would want to work with it ? <a href="http://compass-style.org" title="Compass">Compass</a> made me change my opinion. Firstly, you can use the <a href="http://sass-lang.com" title="Sass">sass</a> now instead of css, an advantage comparable to using <a href="http://daringfireball.net/projects/markdown/" title="Markdown">markdown</a> instead of html. Secondly, it has mixins that take care of all (most) of those browser incompatibilities. It might not go well with IE users: I don’t know, neither do I care to know. But it should work mostly. The style for this page is entirely written in sass using the <a href="http://compass-style.org" title="Compass">compass</a> framework. I will publish the source code soon after some refactoring.</p>
@@ -101,7 +93,6 @@
 <!-- Co-authors         -->
 
 <!-- Conference/Journal links -->
-
 
 </div>
 

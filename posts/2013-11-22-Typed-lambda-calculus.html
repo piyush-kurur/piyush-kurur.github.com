@@ -63,19 +63,23 @@
     </div>
   </div>
   <div class="content">
-    <div class="post-date">
-  <i>Posted on:  November 22, 2013 (Friday) </i>
-</div>
-
-<div class="post-tags">
-  <i>Tags:  <a href="../posts/tags/Type%20theory.html">Type theory</a> </i>
-</div>
-
-
+    <span class="post-date">November 22, 2013 (Friday)</span>
+<span class="post-tags"><i class="icon-tags"></i><a href="../posts/tags/Type%20theory.html">Type theory</a></span>
 <div class="post">
   <h1 id="post-title">Typed lambda calculus</h1>
-
   <p>In this post, I briefly introduce typed lambda calculus in its simplest form and explain the type inference rules. The <a href="http://en.wikipedia.org/wiki/Curry_Howard_Isomorphism" title="Wikipedia: Curry Howard Isomorphism">Curry Howard Isomorphism</a> appears for the first time here although of a toy logical system, namely the propositional logic with implication (⇒) as the only boolean operation.</p>
+<h1 id="what-are-types">What are types ?</h1>
+<p>We fix a set <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>𝒯</mi></mrow></math> of base types that can be thought of as the <em>built-in</em> types of the language. For this post, the set of types are all terms generated inductively as the follows:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>τ</mi><mo>≔</mo><mi>t</mi><mo stretchy="false">∣</mo><msub><mi>τ</mi><mn>1</mn></msub><mo>→</mo><msub><mi>τ</mi><mn>2</mn></msub></mrow></math></p>
+<p>In the above definition <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>t</mi></mrow></math> is some basic type, i.e an element of the set <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>𝒯</mi></mrow></math>, and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>τ</mi><mn>1</mn></msub></mrow></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>τ</mi><mn>2</mn></msub></mrow></math> are themselves types in which case <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>τ</mi><mn>1</mn></msub><mo>→</mo><msub><mi>τ</mi><mn>2</mn></msub></mrow></math> is the type of functions from <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>τ</mi><mn>1</mn></msub></mrow></math> to <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>τ</mi><mn>2</mn></msub></mrow></math>. There are few points that we want to clarify right away.</p>
+<ol style="list-style-type: decimal">
+<li><p>Consider the set of propositional logic formulas where the base set of propositions is <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>𝒯</mi></mrow></math> and the only logical connective is the logical implies <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo>⇒</mo></mrow></math>. We can see that there is a one-to-one correspondence with types of our language: interpret the functional type symbol <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo>→</mo></mrow></math> as the implication operator <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo>⇒</mo></mrow></math>. We will see in this post that this connection is <em>not</em> just skin deep.</p></li>
+<li><p>The types in our language are defined independent of the terms in our lambda calculus. When we want more powerful types the will break. We will have to define the values and types together.</p></li>
+</ol>
+<h1 id="what-is-a-well-typed-expression">What is a well typed expression ?</h1>
+<p>Intuitively, a typed lambda calculus is a version of lambda calculus where each expression is assigned a <em>type</em>. The property that we want to ensure is that whenever an expression <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>f</mi></mrow></math> of type <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>σ</mi></mrow></math> is applied on another expression <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>e</mi></mrow></math> of type <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>τ</mi></mrow></math>, the type <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>σ</mi></mrow></math> <em>should be</em> a function type from <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>τ</mi><mo>→</mo><mi>τ</mi><mo>′</mo></mrow></math>, for type <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>τ</mi><mo>′</mo></mrow></math>. Whatever systematic procedure we adopt to assign types to expressions, the the base case to handle therefore should be variables. There are two kinds of variables that can occur in an expression, free and bound. The bould variable gets its type from the site of binding by ensuring that the the only <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>λ</mi></mrow></math>-abstraction that are allowed are of the form <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>λ</mi><mi>x</mi><mo>:</mo><mi>τ</mi><mo>.</mo><mi>e</mi></mrow></math>. In such a case every free occurance of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi></mrow></math> in <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>e</mi></mrow></math> is assumed to carry the type <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>τ</mi></mrow></math>. For the free variables the only way we can have types is by <em>type assumptions</em>. This is not unexpected: in any programming language the meaning of the program dependes on what the free variables are. Something similar is happening here.</p>
+<p>We will use the notation <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>e</mi><mo>:</mo><mi>τ</mi></mrow></math> to say that <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>e</mi></mrow></math> has type <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>τ</mi></mrow></math>. A <em>type assumption</em> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>Γ</mi></mrow></math> is a set of assertions of the kind <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi><mo>:</mo><mi>τ</mi></mrow></math> where <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi></mrow></math> is a variable. Ofcourse we disallow the same variable to have two types in an assumtion. A typed lambda calculus expression for us is a an ordered pair <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>Γ</mi></mrow></math> of a type assumption <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>Γ</mi></mrow></math> and a <em>type judgement</em> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>e</mi><mo>:</mo><mi>τ</mi></mrow></math> subject to some some <em>formation rules</em>,</p>
+<p>1.</p>
 <!-- Global urls -->
 
 
@@ -96,7 +100,6 @@
 <!-- Co-authors         -->
 
 <!-- Conference/Journal links -->
-
 
 </div>
 
