@@ -16,6 +16,7 @@
     <published>2014-01-11T00:00:00Z</published>
     <updated>2014-01-11T00:00:00Z</updated>
     <summary type="html"><![CDATA[<h2 id="in-memory-of-sanjeev-kumar-aggarwal-skaska.">In memory of <a href="http://cse.iitk.ac.in/users/ska" title="Sanjeev Kumar Aggarwal">Sanjeev Kumar Aggarwal (ska)</a>.</h2>
+<p><strong>Update</strong>: An implementation of propositional logic in agada is available on my github repository <a href="https://github.com/piyush-kurur/sample-code/blob/master/agda/Logic.agda">sample-code/agda/Logic.agda</a></p>
 <p>In this post, I briefly introduce typed lambda calculus in its simplest form and explain the type inference rules. The <a href="http://en.wikipedia.org/wiki/Curry-Howard_correspndence" title="Wikipedia: Curry-Howard correspndence">Curry-Howard isomorphism</a> appears for the first time here, although only for propositional logic.</p>
 <h1 id="what-are-types">What are types ?</h1>
 <p>We fix a set <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>𝒯</mi></mrow></math> of base types that can be thought of as the <em>built-in</em> types of the language. For this post, the set of types are all terms generated inductively as follows:</p>
