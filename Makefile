@@ -5,4 +5,5 @@ GIT_COMMIT="piyush-kurur-pages/website/${COMMIT}"
 deploy:
 	git add ./
 	git commit -m "version ${GIT_COMMIT}"
-	git push
+	git push github
+	git push bitbucket
