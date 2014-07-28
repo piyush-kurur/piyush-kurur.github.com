@@ -7,6 +7,8 @@
     
     
     <meta name="generator" content="pandoc" />
+    <link href="http://fonts.googleapis.com/css?family=Tangerine:700" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
     <link href="../stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
     <link href="../stylesheets/font-awesome/font-awesome.css" media="screen, projection" rel="stylesheet" type="text/css" />
     <title>Piyush P Kurur|Travis builds for Raaz</title>
@@ -56,6 +58,7 @@
 <p>There is a subtle problem with dependencies that makes multi-platform builds more or less meaningless. The way we ensure that the packages are built against a platform is by setting up an appropriate <code>cabal.config</code> file in the directory of the package. This config file puts constraints corresponding to the platform we want to test against. I noticed that the builds are actually not installing the platform packages because of the version dependency. For example, the dependency on Quickcheck that we had was <code>Quickcheck==2.4.*</code>. This means that even for builds for <a href="https://www.haskell.org/platform/changelog.html">platform 2013.2.0.0</a> the quick package used was <code>Quickcheck-2.4.something</code>. For this reason we had to go for a more liberal package version bounds (merge <a href="https://github.com/piyush-kurur/raaz/commit/ac0ad7afd711b656a77257ebc4ba923cb939b3f3">ac0ad7</a>). As long as we are not using the packages like <code>base</code> or <code>Quickcheck</code> in a non-standard way, I think we are fine.</p>
 <!-- Global urls -->
 
+<!-- Course home pages -->
 
 <!-- My coding stuff   -->
 

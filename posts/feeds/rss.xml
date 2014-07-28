@@ -78,6 +78,7 @@
 <p>Languages like agda which has to double up as a proof assistant allow certain restricted kinds of recursion by making sure that the recursion is well formed. Other than the motivation to write real world programs, some restricted form of recursion is actually necessary to capture mathematical objects like natural numbers etc. We leave these issues for future posts.</p>
 <!-- Global urls -->
 
+<!-- Course home pages -->
 
 <!-- My coding stuff   -->
 
@@ -122,6 +123,7 @@
 <p>There is a subtle problem with dependencies that makes multi-platform builds more or less meaningless. The way we ensure that the packages are built against a platform is by setting up an appropriate <code>cabal.config</code> file in the directory of the package. This config file puts constraints corresponding to the platform we want to test against. I noticed that the builds are actually not installing the platform packages because of the version dependency. For example, the dependency on Quickcheck that we had was <code>Quickcheck==2.4.*</code>. This means that even for builds for <a href="https://www.haskell.org/platform/changelog.html">platform 2013.2.0.0</a> the quick package used was <code>Quickcheck-2.4.something</code>. For this reason we had to go for a more liberal package version bounds (merge <a href="https://github.com/piyush-kurur/raaz/commit/ac0ad7afd711b656a77257ebc4ba923cb939b3f3">ac0ad7</a>). As long as we are not using the packages like <code>base</code> or <code>Quickcheck</code> in a non-standard way, I think we are fine.</p>
 <!-- Global urls -->
 
+<!-- Course home pages -->
 
 <!-- My coding stuff   -->
 
@@ -164,6 +166,7 @@
 <p>An important property of untyped lambda calculus is that every lambda calculus function <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>F</mi></mrow></math> has a <em>fixed point</em>: given <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>F</mi></mrow></math>, consider the expression <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>X</mi><mo>=</mo><mi>λ</mi><mi>x</mi><mo>.</mo><mi>F</mi><mo stretchy="false">(</mo><mi>x</mi><mi>x</mi><mo stretchy="false">)</mo></mrow></math>. One can easily show that the term <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>X</mi><mi>X</mi></mrow></math> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>β</mi></mrow></math>-reduces to <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>F</mi><mo stretchy="false">(</mo><mi>X</mi><mi>X</mi><mo stretchy="false">)</mo></mrow></math> and is therefore the fixed point of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>F</mi></mrow></math>. Furthermore, the computation of fixed point is effective as well, i.e. we have a lambda calculus combinator for computing it: Consider for example the combinator (i.e. lambda calculus term with no free variable) <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>Y</mi></mrow></math> defined as <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>Y</mi><mo>=</mo><mi>λ</mi><mi>f</mi><mo>.</mo><mo stretchy="false">(</mo><mi>λ</mi><mi>x</mi><mo>.</mo><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>λ</mi><mi>x</mi><mo>.</mo><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow></math> It is easy to verify that <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>Y</mi><mi>F</mi></mrow></math> is the fixed point for <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>F</mi></mrow></math>. Existence of fixed point combinator is important as that is what allows us to define functions recursively. A recursive definition <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>f</mi><mo>=</mo><mi>F</mi><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo></mrow></math> is nothing but the fixed point of the function <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>F</mi></mrow></math>. The fact that it is effective make it possible for the compiler to support recursive functions. Fixed point theorem also allows mutual recursion. For this one has to have a way of <em>pairing</em> values into tuples which can be done in lambda calculus by suitable encoding (see the <a href="http://en.wikipedia.org/wiki/Lambda_calculus#Pairs" title="Wikipedia: Lambda calculus#Pairs">Lambda calculus#Pairs</a>). The reset of the details I leave it as an exercise.</p>
 <!-- Global urls -->
 
+<!-- Course home pages -->
 
 <!-- My coding stuff   -->
 
@@ -204,6 +207,7 @@
 </ol>
 <!-- Global urls -->
 
+<!-- Course home pages -->
 
 <!-- My coding stuff   -->
 
@@ -267,6 +271,7 @@
 <p>I look forward to your contributions. Even if you are not comfortable with haskell, you can contribute. For example, if computer architecture is your bread and butter and you are the <a href="http://en.wikipedia.org/wiki/Chuck_Norris" title="Wikipedia: Chuck Norris">Chuck Norris</a> of assembly language programming, do join us for some fun coding: A lot of primitives require fast implementation often exploiting the platform specific features like <a href="http://en.wikipedia.org/wiki/SIMD" title="Wikipedia: SIMD">SIMD</a> instruction set.</p>
 <!-- Global urls -->
 
+<!-- Course home pages -->
 
 <!-- My coding stuff   -->
 
@@ -302,6 +307,7 @@
 <p><strong>Update 03 Oct 2013:</strong> Now uses disqus for commenting.</p>
 <!-- Global urls -->
 
+<!-- Course home pages -->
 
 <!-- My coding stuff   -->
 
@@ -335,6 +341,7 @@
 <p><strong>Update 18 May 2013</strong>: I have added my old wrtings as blog post. So it might appear as if this not my first post.</p>
 <!-- Global urls -->
 
+<!-- Course home pages -->
 
 <!-- My coding stuff   -->
 
@@ -393,6 +400,7 @@
 <p>Remember all of this is not without ``risks’’. So evaluate the best options for you and make up your mind.</p>
 <!-- Global urls -->
 
+<!-- Course home pages -->
 
 <!-- My coding stuff   -->
 
@@ -480,6 +488,7 @@ $ <span class="kw">pacman</span> -S sshfs <span class="co"># as root on an Arch 
 <p>See the <a href="http://www.openssh.com/faq.html" title="ssh faq">openssh FAQ</a> for more details.</p>
 <!-- Global urls -->
 
+<!-- Course home pages -->
 
 <!-- My coding stuff   -->
 
@@ -594,6 +603,7 @@ $ <span class="kw">ssh</span> -N -L 2500:remote:25 ppk@remote <span class="kw">&
 <p>Using tunnel devices and ssh port forwarding one can also setup vpn like network. We wont go into the details in this article.</p>
 <!-- Global urls -->
 
+<!-- Course home pages -->
 
 <!-- My coding stuff   -->
 
@@ -626,6 +636,7 @@ $ <span class="kw">ssh</span> -N -L 2500:remote:25 ppk@remote <span class="kw">&
 <p><a href="http://johnmacfarlane.net/pandoc" title="Pandoc">Pandoc</a> is not just a text format converter. It comes with a supporting <a href="http://www.haskell.org" title="Haskell homepage">Haskell</a> library which can be used to program specialised converters if needed.</p>
 <!-- Global urls -->
 
+<!-- Course home pages -->
 
 <!-- My coding stuff   -->
 
