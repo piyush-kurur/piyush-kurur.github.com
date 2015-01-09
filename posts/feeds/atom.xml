@@ -8,8 +8,80 @@
         <name>Piyush P Kurur</name>
         <email>ppk@cse.iitk.ac.in.REMOVETHISIFYOUAREAHUMAN</email>
     </author>
-    <updated>2014-08-27T00:00:00Z</updated>
+    <updated>2015-01-09T00:00:00Z</updated>
     <entry>
+    <title>Je suis Charlie</title>
+    <link href="http://cse.iitk.ac.in/users/ppk/posts/2015-01-09-Je-suis-Charlie.html" />
+    <id>http://cse.iitk.ac.in/users/ppk/posts/2015-01-09-Je-suis-Charlie.html</id>
+    <published>2015-01-09T00:00:00Z</published>
+    <updated>2015-01-09T00:00:00Z</updated>
+    <summary type="html"><![CDATA[<p>Je parle un peu français mais had never heard of <a href="http://www.charliehebdo.fr/" title="Charlie Hebdo">Charlie Hebdo</a> before. I probably do not subscribe to your political views (I do not know). But there is one thing that I support: making the world a better place by reducing the influence of the arrogant religions of the world.</p>
+<p>For too long they have been pampered with</p>
+<ol style="list-style-type: decimal">
+<li><p>the unquestioned right to take offence and vandalise,</p></li>
+<li><p>the unquestioned right to spread their superstitions, despite modern science poking holes into all their theories about the universe.</p></li>
+<li><p>the unquestioned right to pretend that they are the sole authority when it comes to goodness and ethics,</p></li>
+<li><p>the unquestioned right to tax breaks.</p></li>
+</ol>
+<p>Not any more. Donc <a href="http://www.charliehebdo.fr/" title="Charlie Hebdo">“Je suis Charlie”</a></p>
+<!-- Global urls -->
+
+<!-- Course home pages -->
+
+<!-- My coding stuff   -->
+
+<!-- Some websites -->
+
+<!-- Some distros -->
+
+<!-- Other languages  -->
+
+<!-- Haskell packages  -->
+
+<!-- Web stuff         -->
+
+<!-- Haskell links     -->
+
+<!-- Co-authors         -->
+
+<!-- Conference/Journal links -->
+]]></summary>
+</entry>
+<entry>
+    <title>Homotopy type theory at IITK</title>
+    <link href="http://cse.iitk.ac.in/users/ppk/posts/2015-01-03-Homotopy-type-theory-at-IITK.html" />
+    <id>http://cse.iitk.ac.in/users/ppk/posts/2015-01-03-Homotopy-type-theory-at-IITK.html</id>
+    <published>2015-01-03T00:00:00Z</published>
+    <updated>2015-01-03T00:00:00Z</updated>
+    <summary type="html"><![CDATA[<p><a href="http://www.andrew.cmu.edu/user/awodey/">Steve Awodey</a> is going to talk about <a href="http://www.homotopytypetheory.org" title="Homotopy type theory">homotopy type theory</a> at our department on 14th of January, 2015 at 3:00pm. This will be the 6th Hari V Sahasrabuddhe <a href="http://www.cse.iitk.ac.in/research/inflections/"><em>Inflections in Computing</em></a> lecture. The abstract is given below.</p>
+<blockquote>
+<p><em>Homotopy type theory</em> is a homotopical interpretation of a system of constructive type theory. It provides a new framework for the foundations of mathematics with intrinsic geometric content and a computational implementation. It is currently under intense development by logicians, mathematicians and computer scientists as a potential tool for both the large-scale formalization and verification of mathematical proofs and formal verification of software. In this survey talk, I will introduce this system and show how it can be used to give new logical proofs of some classical theorems from algebraic topology, making use of the new ideas of higher inductive types and the univalence axiom.</p>
+<p>For information, see <a href="http://www.homotopytypetheory.org">http://www.homotopytypetheory.org</a>.</p>
+</blockquote>
+<!-- Global urls -->
+
+<!-- Course home pages -->
+
+<!-- My coding stuff   -->
+
+<!-- Some websites -->
+
+<!-- Some distros -->
+
+<!-- Other languages  -->
+
+<!-- Haskell packages  -->
+
+<!-- Web stuff         -->
+
+<!-- Haskell links     -->
+
+<!-- Co-authors         -->
+
+<!-- Conference/Journal links -->
+]]></summary>
+</entry>
+<entry>
     <title>Dependent types</title>
     <link href="http://cse.iitk.ac.in/users/ppk/posts/2014-08-27-Dependent-Types.html" />
     <id>http://cse.iitk.ac.in/users/ppk/posts/2014-08-27-Dependent-Types.html</id>

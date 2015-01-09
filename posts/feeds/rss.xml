@@ -6,8 +6,78 @@
         <description><![CDATA[My views on how the Universe ought to be]]></description>
         <atom:link href="http://cse.iitk.ac.in/users/ppk/posts/feeds/rss.xml" rel="self"
                    type="application/rss+xml" />
-        <lastBuildDate>Wed, 27 Aug 2014 00:00:00 UT</lastBuildDate>
+        <lastBuildDate>Fri, 09 Jan 2015 00:00:00 UT</lastBuildDate>
         <item>
+    <title>Je suis Charlie</title>
+    <link>http://cse.iitk.ac.in/users/ppk/posts/2015-01-09-Je-suis-Charlie.html</link>
+    <description><![CDATA[<p>Je parle un peu français mais had never heard of <a href="http://www.charliehebdo.fr/" title="Charlie Hebdo">Charlie Hebdo</a> before. I probably do not subscribe to your political views (I do not know). But there is one thing that I support: making the world a better place by reducing the influence of the arrogant religions of the world.</p>
+<p>For too long they have been pampered with</p>
+<ol style="list-style-type: decimal">
+<li><p>the unquestioned right to take offence and vandalise,</p></li>
+<li><p>the unquestioned right to spread their superstitions, despite modern science poking holes into all their theories about the universe.</p></li>
+<li><p>the unquestioned right to pretend that they are the sole authority when it comes to goodness and ethics,</p></li>
+<li><p>the unquestioned right to tax breaks.</p></li>
+</ol>
+<p>Not any more. Donc <a href="http://www.charliehebdo.fr/" title="Charlie Hebdo">“Je suis Charlie”</a></p>
+<!-- Global urls -->
+
+<!-- Course home pages -->
+
+<!-- My coding stuff   -->
+
+<!-- Some websites -->
+
+<!-- Some distros -->
+
+<!-- Other languages  -->
+
+<!-- Haskell packages  -->
+
+<!-- Web stuff         -->
+
+<!-- Haskell links     -->
+
+<!-- Co-authors         -->
+
+<!-- Conference/Journal links -->
+]]></description>
+    <pubDate>Fri, 09 Jan 2015 00:00:00 UT</pubDate>
+    <guid>http://cse.iitk.ac.in/users/ppk/posts/2015-01-09-Je-suis-Charlie.html</guid>
+</item>
+<item>
+    <title>Homotopy type theory at IITK</title>
+    <link>http://cse.iitk.ac.in/users/ppk/posts/2015-01-03-Homotopy-type-theory-at-IITK.html</link>
+    <description><![CDATA[<p><a href="http://www.andrew.cmu.edu/user/awodey/">Steve Awodey</a> is going to talk about <a href="http://www.homotopytypetheory.org" title="Homotopy type theory">homotopy type theory</a> at our department on 14th of January, 2015 at 3:00pm. This will be the 6th Hari V Sahasrabuddhe <a href="http://www.cse.iitk.ac.in/research/inflections/"><em>Inflections in Computing</em></a> lecture. The abstract is given below.</p>
+<blockquote>
+<p><em>Homotopy type theory</em> is a homotopical interpretation of a system of constructive type theory. It provides a new framework for the foundations of mathematics with intrinsic geometric content and a computational implementation. It is currently under intense development by logicians, mathematicians and computer scientists as a potential tool for both the large-scale formalization and verification of mathematical proofs and formal verification of software. In this survey talk, I will introduce this system and show how it can be used to give new logical proofs of some classical theorems from algebraic topology, making use of the new ideas of higher inductive types and the univalence axiom.</p>
+<p>For information, see <a href="http://www.homotopytypetheory.org">http://www.homotopytypetheory.org</a>.</p>
+</blockquote>
+<!-- Global urls -->
+
+<!-- Course home pages -->
+
+<!-- My coding stuff   -->
+
+<!-- Some websites -->
+
+<!-- Some distros -->
+
+<!-- Other languages  -->
+
+<!-- Haskell packages  -->
+
+<!-- Web stuff         -->
+
+<!-- Haskell links     -->
+
+<!-- Co-authors         -->
+
+<!-- Conference/Journal links -->
+]]></description>
+    <pubDate>Sat, 03 Jan 2015 00:00:00 UT</pubDate>
+    <guid>http://cse.iitk.ac.in/users/ppk/posts/2015-01-03-Homotopy-type-theory-at-IITK.html</guid>
+</item>
+<item>
     <title>Dependent types</title>
     <link>http://cse.iitk.ac.in/users/ppk/posts/2014-08-27-Dependent-Types.html</link>
     <description><![CDATA[<p>In the <a href="../posts/2014-01-11-Typed-lambda-calculus.html" title="Typed lambda calculus">last post</a>, we looked at simply typed lambda calculus where each term was associated with a type. As such the types of the language and terms were completely separated — we could define the types of the language independent of terms. A dependently typed language is one where the types can depend on values from a given type. For example consider the natural numbers <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>ℕ</mi></mrow></math>. In a language like Haskell, we can define them inductively. However, what if we want to capture the collection of residue classes <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>ℕ</mi><mi>n</mi></msub></mrow></math> modulo a number <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>n</mi><mo>:</mo><mi>ℕ</mi></mrow></math>. Ideally, we would want to distinguish the types <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>ℕ</mi><mi>m</mi></msub></mrow></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>ℕ</mi><mi>n</mi></msub></mrow></math> for each <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>m</mi><mo>≠</mo><mi>n</mi></mrow></math> — the term <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi><mo>+</mo><mi>y</mi></mrow></math> should lead to a type error if <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi><mo>:</mo><msub><mi>ℕ</mi><mi>m</mi></msub></mrow></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>y</mi><mo>:</mo><msub><mi>ℕ</mi><mi>n</mi></msub></mrow></math>. A dependently typed language can supports construction of such types. For a type <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>A</mi></mrow></math>, a <em>type family</em> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>P</mi></mrow></math> on <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>A</mi></mrow></math> is a collection of types <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></math> one for each <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>a</mi><mo>:</mo><mi>A</mi></mrow></math>.</p>
