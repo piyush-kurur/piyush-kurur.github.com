@@ -12,7 +12,7 @@
     <meta name="generator" content="pandoc" />
     <link href="//fonts.googleapis.com/css?family=Tangerine:700" rel="stylesheet" type="text/css">
     <link href="//fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
-    <link href="//static.cse.iitk.ac.in/users/ppk/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
+    <link href="../stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
     <link href="//static.cse.iitk.ac.in/users/ppk/stylesheets/font-awesome/font-awesome.css" media="screen, projection" rel="stylesheet" type="text/css" />
     <title>Piyush P Kurur|SSHFS: Remote directory over ssh</title>
   </head>
@@ -39,7 +39,7 @@
   </div>
   <div class="main-content">
     <span class="post-date">June  3, 2011 (Friday)</span>
-<span class="post-tags"><i class="fa fa-tags"></i><a href="../posts/tags/Security.html">Security</a></span>
+<span class="post-tags"><i class="fa fa-tags"></i></span>
 <div class="post">
   <h1 id="post-title">SSHFS: Remote directory over ssh</h1>
   <p>Often one wants shared access to files across machines. Traditionally one uses the <a href="http://en.wikipedia.org/wiki/Network_File_System_(protocol)" title="NFS Wiki">network file system</a> (<a href="http://en.wikipedia.org/wiki/Network_File_System_(protocol)" title="NFS Wiki">nfs</a>). The network file server works as follows: There is an <em>nfs server</em> that <em>exports</em> some directories in its filesystem hiearchy to various <em>nfs clients</em> that <em>mount</em> these directory over the network into their file system hierarchy. As a result, each of the clients shares the directories exported by the nfs server. However <a href="http://en.wikipedia.org/wiki/Network_File_System_(protocol)" title="NFS Wiki">nfs</a> is probably the worst protocol when it comes to security and is rightly called network failure system.</p>
